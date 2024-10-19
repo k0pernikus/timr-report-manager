@@ -29,11 +29,13 @@ class CsvParser
             ->map(function (Collection $groupedEntries): Collection {
                 /** @var Collection<int, TimeEntry> $mergedEntries */
                 $mergedEntries = collect();
-                $currentMergedEntry = null;
+                $currentMergedEntry = $groupedEntries->first();
 
-                foreach ($groupedEntries as $entry) {
+                foreach ($groupedEntries as $entry)
+                {
                     if (!$currentMergedEntry) {
                         $currentMergedEntry = $entry;
+
                         continue;
                     }
 
@@ -43,10 +45,12 @@ class CsvParser
                             start: $currentMergedEntry->start,
                             end: $entry->end->isAfter($currentMergedEntry->end) ? $entry->end : $currentMergedEntry->end
                         );
-                    } else {
-                        $mergedEntries->push($currentMergedEntry);
-                        $currentMergedEntry = $entry;
+
+                        continue;
                     }
+
+                    $mergedEntries->push($currentMergedEntry);
+                    $currentMergedEntry = $entry;
                 }
 
                 if ($currentMergedEntry) {
