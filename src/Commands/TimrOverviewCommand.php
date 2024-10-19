@@ -16,7 +16,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class TimrOverviewCommand extends Command
 {
-    public function __construct(private readonly CsvParser $parser, private readonly ?CarbonImmutable $now = new CarbonImmutable(), ?string $name = null)
+    public function __construct(private readonly CsvParser $parser, private readonly CarbonImmutable $now = new CarbonImmutable(), ?string $name = null)
     {
         parent::__construct($name);
     }
@@ -27,27 +27,32 @@ class TimrOverviewCommand extends Command
             ->setDescription('Overview delivered and expected hours')
             ->setName('overview')
             ->addOption(
-                'csv',
-                'c',
-                InputOption::VALUE_REQUIRED,
-                'expected vs done hours',
+                name: 'csv',
+                shortcut: 'c',
+                mode: InputOption::VALUE_REQUIRED,
+                description: 'expected vs done hours',
             )
             ->addOption(
                 name: 'period',
                 shortcut: 'p',
                 mode: InputOption::VALUE_OPTIONAL,
-                suggestedValues: ['day', 'week', 'month'],
-                default: 'month'
+                default: 'month',
+                suggestedValues: ['day', 'week', 'month']
+            )
+            ->addOption(
+                name: 'hours',
+                shortcut: 'H',
+                mode: InputOption::VALUE_OPTIONAL,
+                default: 5,
             );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $targetHoursPerDay = 5;
-
+        $targetHoursPerDay = (int)$input->getOption('hours');
         $period = (string)$input->getOption('period');
-
         $csvFile = trim((string)$input->getOption('csv'));
+
         $this
             ->parser
             ->parse($csvFile)
