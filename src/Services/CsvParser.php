@@ -23,7 +23,38 @@ class CsvParser
         $records = $this->getRecords($fullPath);
         $entries = $this->toDto($records);
 
-        return collect($entries);
+        return collect($entries)
+            ->sortBy(fn(TimeEntry $entry) => $entry->start) // Sort by start time
+            ->groupBy(fn(TimeEntry $entry) => $entry->description) // Group by description
+            ->map(function (Collection $groupedEntries): Collection {
+                $mergedEntries = collect();
+                $currentMergedEntry = null;
+
+                foreach ($groupedEntries as $entry) {
+                    if (!$currentMergedEntry) {
+                        $currentMergedEntry = $entry;
+                        continue;
+                    }
+
+                    if ($entry->start->lessThanOrEqualTo($currentMergedEntry->end)) {
+                        $currentMergedEntry = new TimeEntry(
+                            $currentMergedEntry->description,  // Keep the same description
+                            $currentMergedEntry->start,        // Start remains the same
+                            $entry->end->isAfter($currentMergedEntry->end) ? $entry->end : $currentMergedEntry->end // Update end time if later
+                        );
+                    } else {
+                        $mergedEntries->push($currentMergedEntry);
+                        $currentMergedEntry = $entry;
+                    }
+                }
+
+                if ($currentMergedEntry) {
+                    $mergedEntries->push($currentMergedEntry);
+                }
+
+                return $mergedEntries;
+            })
+            ->flatten();
     }
 
     private function getRecords(string $csvFile): \Iterator

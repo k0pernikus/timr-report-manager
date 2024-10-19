@@ -66,18 +66,19 @@ php .\timr.php overview -c .\tests\csv\monthly.csv
 # ToDos:
  
 ## Must Haves:
-- be able to use both "Type" as "Notes" as notes as task descriptor, at best via flag
-- in the ticket report, only show activities having a ticket id number included
-- automatically summarize activities having the same end and start date when having the same note
-- should show expectations on a week and monthly basis
-- support different languages 
+- [ ] be able to use both "Type" as "Notes" as notes as task descriptor, at best via flag
+- [ ] in the ticket report, only show activities having a ticket id number included
+- [x] automatically summarize activities having the same end and start date when having the same note 
+- [ ] should show expectations on a week and monthly basis
+- [ ] support different languages 
 
 ## Nice to haves:
-- formatting
-- also show break times over the course of a day
-- vacations, sick days, and holidays instead of hardcoded
-- distinguish / filter out user
+- [ ] formatting
+- [ ] also show break times over the course of a day
+- [ ] vacations, sick days, and holidays instead of hardcoded
+- [ ] distinguish / filter out user
 
 ## DX Experience
-- Codestyle
-- phpstan etc.
+- [ ] Codestyle
+- [ ] phpstan etc.
+- [ ] resolve __DIR__ issue when coding on windows using WSL
