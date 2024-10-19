@@ -13,12 +13,11 @@ abstract class AbstractFormatter
     /**
      * @param Collection<TimeEntry> $entries
      */
-    public abstract function format(Collection $entries): void;
+    abstract public function format(Collection $entries): void;
 
     public function setOutput(OutputInterface $output): AbstractFormatter
     {
         $this->output = $output;
         return $this;
     }
-
 }

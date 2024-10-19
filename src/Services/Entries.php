@@ -17,7 +17,6 @@ class Entries
         $total = static::getTotal($collection);
 
         return $total->format('%h:%I');
-
     }
 
     /**

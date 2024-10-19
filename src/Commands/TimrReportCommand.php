@@ -16,11 +16,11 @@ class TimrReportCommand extends Command
     public const CSV = 'csv';
 
     public function __construct(
-        string                             $name,
-        string                             $description,
-        private readonly CsvParser         $parser,
-        private readonly AbstractFormatter $formatter)
-    {
+        string $name,
+        string $description,
+        private readonly CsvParser $parser,
+        private readonly AbstractFormatter $formatter
+    ) {
         parent::__construct($name);
         $this->setDescription($description);
     }

@@ -76,7 +76,8 @@ class TimrOverviewCommand extends Command
                         ->filter(
                             function (Carbon $date) use ($excludeDates) {
                                 return !in_array($date->format('Y-m-d'), $excludeDates);
-                            })
+                            }
+                        )
                         ->count(),
                 };
 
@@ -84,7 +85,8 @@ class TimrOverviewCommand extends Command
                 $targetHours = $amountDays * $targetHoursPerDay;
 
                 $deliveredHours = $items->reduce(
-                    fn(CarbonInterval $total, TimeEntry $item): CarbonInterval => $total->addMinutes($item->getDuration()), new CarbonInterval()
+                    fn(CarbonInterval $total, TimeEntry $item): CarbonInterval => $total->addMinutes($item->getDuration()),
+                    new CarbonInterval()
                 );
                 $deliveredHours->cascade();
 

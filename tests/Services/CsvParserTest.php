@@ -60,7 +60,5 @@ class CsvParserTest extends TestCase
             actual: $actualEnd2,
             message: 'the end date must be the second latest option as there was a break'
         );
-
-
     }
 }

@@ -14,10 +14,11 @@ class TimeEntry
     public function __construct(
         string $description,
         string $start,
-        string $end)
-    {
+        string $end
+    ) {
         $description = trim($description);
-        $this->description = empty($description) ? 'UNCATEGORIZED' : $description;;
+        $this->description = empty($description) ? 'UNCATEGORIZED' : $description;
+        ;
 
         $this->start = Carbon::parse($start)->toImmutable();
         $this->end = Carbon::parse($end)->toImmutable();

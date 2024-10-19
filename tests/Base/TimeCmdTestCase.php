@@ -33,6 +33,4 @@ abstract class TimeCmdTestCase extends TestCase
         $rootDir = '/home/philipp/github/timr-report-manager';
         $this->timr = new Timr($rootDir);
     }
-
-
 }
