@@ -73,7 +73,7 @@ php .\timr.php overview -c .\tests\csv\monthly.csv
 - [ ] support different languages 
 
 ## Nice to haves:
-- [ ] formatting
+- [x] formatting
 - [ ] also show break times over the course of a day
 - [ ] vacations, sick days, and holidays instead of hardcoded
 - [ ] distinguish / filter out user

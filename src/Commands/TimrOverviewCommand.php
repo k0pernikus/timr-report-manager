@@ -51,6 +51,8 @@ class TimrOverviewCommand extends Command
 
                 [$year, $month] = explode("-", $group);
                 $start = Carbon::create($year, $month, 1);
+
+                // fixme: if current month, until today
                 //$end = $start->copy()->endOfMonth();
                 $end = Carbon::now();
 
@@ -63,13 +65,12 @@ class TimrOverviewCommand extends Command
                     ->count();
 
                 $targetHours = $amountDays * $targetHoursPerDay;
-                /**
-                 * @var $deliveredHours
-                 */
+
                 $deliveredHours = $items->reduce(
                     fn(CarbonInterval $total, TimeEntry $item): CarbonInterval => $total->addMinutes($item->getDuration()), new CarbonInterval()
                 );
                 $deliveredHours->cascade();
+
                 $allTheHours = $deliveredHours->totalHours;
                 $output->writeln("$group: Expected $targetHours / Delivered $allTheHours");
 
@@ -78,6 +79,4 @@ class TimrOverviewCommand extends Command
 
         return Command::SUCCESS;
     }
-
-
 }
