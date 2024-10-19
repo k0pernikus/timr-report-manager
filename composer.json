@@ -1,5 +1,6 @@
 {
     "name": "kopernikus/timr-report-manager",
+    "description": "Analyze and generate timr csv reports to easily and quickly forward them to external time tracking tools.",
     "license": "MIT",
     "autoload": {
         "psr-4": {
