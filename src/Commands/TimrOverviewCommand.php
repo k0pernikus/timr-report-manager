@@ -45,9 +45,9 @@ class TimrOverviewCommand extends Command
     {
         $targetHoursPerDay = 5;
 
-        $period = $input->getOption('period');
+        $period = (string)$input->getOption('period');
 
-        $csvFile = trim($input->getOption('csv'));
+        $csvFile = trim((string)$input->getOption('csv'));
         $this
             ->parser
             ->parse($csvFile)

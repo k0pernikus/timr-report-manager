@@ -87,4 +87,4 @@ php .\timr.php overview -c .\tests\csv\monthly.csv
 
 - [ ] Codestyle
 - [ ] phpstan etc.
-- [ ] resolve __DIR__ issue when coding on windows using WSL
+- [x] resolve __DIR__ issue when coding on windows using WSL

@@ -9,7 +9,7 @@ use Kopernikus\TimrReportManager\Dto\TimeEntry;
 class Entries
 {
     /**
-     * @param Collection<TimeEntry> $collection
+     * @param Collection<int, TimeEntry> $collection
      */
     public static function getTotalForHumans(Collection $collection): string
     {
@@ -20,7 +20,7 @@ class Entries
     }
 
     /**
-     * @param Collection<TimeEntry> $collection
+     * @param Collection<int, TimeEntry> $collection
      */
     public static function getTotal(Collection $collection): CarbonInterval
     {
@@ -30,7 +30,7 @@ class Entries
     }
 
     /**
-     * @param Collection<TimeEntry> $collection
+     * @param Collection<int, TimeEntry> $collection
      */
     public static function getTotalHours(Collection $collection): float
     {

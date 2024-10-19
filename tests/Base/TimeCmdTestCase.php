@@ -29,8 +29,7 @@ abstract class TimeCmdTestCase extends TestCase
 
     protected function setUp(): void
     {
-        // fixme: hardcoded value
-        $rootDir = '/home/philipp/github/timr-report-manager';
+        $rootDir = __DIR__ . '/../..';
         $this->timr = new Timr($rootDir);
     }
 }

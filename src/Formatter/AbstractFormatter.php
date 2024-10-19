@@ -11,7 +11,7 @@ abstract class AbstractFormatter
     protected OutputInterface $output;
 
     /**
-     * @param Collection<TimeEntry> $entries
+     * @param Collection<int,TimeEntry> $entries
      */
     abstract public function format(Collection $entries): void;
 

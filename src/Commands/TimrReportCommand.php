@@ -58,7 +58,7 @@ class TimrReportCommand extends Command
     }
 
     /**
-     * @param Collection<TimeEntry> $collection
+     * @param Collection<int,TimeEntry> $collection
      */
     public function printDailyReport(Collection $collection, OutputInterface $output): void
     {

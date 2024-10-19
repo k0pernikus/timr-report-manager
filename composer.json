@@ -25,5 +25,10 @@
         "league/csv": "^9.18.0",
         "nesbot/carbon": "^3.8",
         "illuminate/collections": "^11.28"
+    },
+    "scripts": {
+        "tests": "./vendor/bin/phpunit tests/",
+        "fix": "./vendor/bin/phpcbf  --standard=PSR12 tests/ src/",
+        "cs": "./vendor/bin/phpcs --standard=PSR12  src/ tests/"
     }
 }

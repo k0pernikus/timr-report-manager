@@ -9,8 +9,7 @@ class CsvParserTest extends TestCase
 {
     public function testItMergesActivities()
     {
-        // fixme: hardcoded value
-        $rootDir = '/home/philipp/github/timr-report-manager';
+        $rootDir = __DIR__ . '/../..';
         $parser = new CsvParser($rootDir);
 
         $expected1 = new TimeEntry('TICKET #45', '2024-10-16 14:14', end: '2024-10-16 17:12');

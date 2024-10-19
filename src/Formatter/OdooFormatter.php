@@ -9,7 +9,7 @@ use Kopernikus\TimrReportManager\Services\Entries;
 class OdooFormatter extends AbstractFormatter
 {
     /**
-     * @param Collection<TimeEntry> $entries
+     * @param Collection<int,TimeEntry> $entries
      */
     public function format(Collection $entries): void
     {

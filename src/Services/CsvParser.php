@@ -14,7 +14,7 @@ class CsvParser
     }
 
     /**
-     * @return Collection<TimeEntry>
+     * @return Collection<int, TimeEntry>
      */
     public function parse(string $csvFile): Collection
     {
@@ -24,9 +24,10 @@ class CsvParser
         $entries = $this->toDto($records);
 
         return collect($entries)
-            ->sortBy(fn(TimeEntry $entry) => $entry->start) // Sort by start time
-            ->groupBy(fn(TimeEntry $entry) => $entry->description) // Group by description
+            ->sortBy(fn(TimeEntry $entry) => $entry->start)
+            ->groupBy(fn(TimeEntry $entry) => $entry->description)
             ->map(function (Collection $groupedEntries): Collection {
+                /** @var Collection<int, TimeEntry> $mergedEntries */
                 $mergedEntries = collect();
                 $currentMergedEntry = null;
 
@@ -38,9 +39,9 @@ class CsvParser
 
                     if ($entry->start->lessThanOrEqualTo($currentMergedEntry->end)) {
                         $currentMergedEntry = new TimeEntry(
-                            $currentMergedEntry->description,  // Keep the same description
-                            $currentMergedEntry->start,        // Start remains the same
-                            $entry->end->isAfter($currentMergedEntry->end) ? $entry->end : $currentMergedEntry->end // Update end time if later
+                            description: $currentMergedEntry->description,
+                            start: $currentMergedEntry->start,
+                            end: $entry->end->isAfter($currentMergedEntry->end) ? $entry->end : $currentMergedEntry->end
                         );
                     } else {
                         $mergedEntries->push($currentMergedEntry);
