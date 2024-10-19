@@ -7,7 +7,8 @@ use Kopernikus\TimrReportManager\Dto\TimeEntry;
 use Kopernikus\TimrReportManager\Services\Entries;
 
 class RedmineFormatter extends AbstractFormatter
-{    public function format(Collection $entries): void
+{
+    public function format(Collection $entries): void
     {
         $output = $this->output;
         $grouped = $entries->groupBy(fn(TimeEntry $item) => $item->description);

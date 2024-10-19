@@ -6,23 +6,26 @@ Tool to reformat timr time tracking to export it to external time tracking tools
 
 Generating reports to easily and quickly forward them to external time tracking tools.
 
-Timr in its free version has the limitation to only track one activity. One can use the Notes annotation field as a "task descriptor".
+Timr in its free version has the limitation to only track one activity. One can use the Notes annotation field as a "
+task descriptor".
 
 I have the use case to track my time both for
 
 - total work time over the course of a day (e.g. 'phone call with hannes', 'ticket #123', 'writing ticket')
 - time spent on specific tasks (e.g. a ticket #123)
-- it shows the hours both in the hour:minute (e.g. `5:15`), and as hours (e.g. `5.25`) for working with different time tracking tools at the same time
+- it shows the hours both in the hour:minute (e.g. `5:15`), and as hours (e.g. `5.25`) for working with different time
+  tracking tools at the same time
 
 Furthermore, this reports groups the activity by the notes.
 
 # Requirements
- 
+
 - Download your timr csv
 - https://YOUR_USER.timr.com/timr/reports/workingTime.html
 - php installed locally
 
 # Usage
+
 ```
 $> php timr.php format --csv path_to.csv
 
@@ -64,21 +67,24 @@ php .\timr.php overview -c .\tests\csv\monthly.csv
 ```
 
 # ToDos:
- 
+
 ## Must Haves:
+
 - [ ] be able to use both "Type" as "Notes" as notes as task descriptor, at best via flag
 - [ ] in the ticket report, only show activities having a ticket id number included
-- [x] automatically summarize activities having the same end and start date when having the same note 
+- [x] automatically summarize activities having the same end and start date when having the same note
 - [ ] should show expectations on a week and monthly basis
-- [ ] support different languages 
+- [ ] support different languages
 
 ## Nice to haves:
+
 - [x] formatting
 - [ ] also show break times over the course of a day
 - [ ] vacations, sick days, and holidays instead of hardcoded
 - [ ] distinguish / filter out user
 
 ## DX Experience
+
 - [ ] Codestyle
 - [ ] phpstan etc.
 - [ ] resolve __DIR__ issue when coding on windows using WSL

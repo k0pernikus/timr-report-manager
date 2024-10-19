@@ -10,13 +10,6 @@ abstract class TimeCmdTestCase extends TestCase
 {
     protected Timr $timr;
 
-    protected function setUp(): void
-    {
-        // fixme: hardcoded value
-        $rootDir = '/home/philipp/github/timr-report-manager';
-        $this->timr = new Timr($rootDir);
-    }
-
     public function createArgvCsvInput(string $cmd, string $file): ArgvInput
     {
         $input = new ArgvInput(argv: [
@@ -28,6 +21,12 @@ abstract class TimeCmdTestCase extends TestCase
         return $input;
     }
 
+    protected function setUp(): void
+    {
+        // fixme: hardcoded value
+        $rootDir = '/home/philipp/github/timr-report-manager';
+        $this->timr = new Timr($rootDir);
+    }
 
 
 }

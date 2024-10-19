@@ -5,7 +5,6 @@ namespace Kopernikus\TimrReportManager\Formatter;
 use Illuminate\Support\Collection;
 use Kopernikus\TimrReportManager\Dto\TimeEntry;
 use Kopernikus\TimrReportManager\Services\Entries;
-use Symfony\Component\Console\Output\OutputInterface;
 
 class OdooFormatter extends AbstractFormatter
 {

@@ -2,7 +2,6 @@
 
 namespace Kopernikus\TimrReportManager;
 
-use http\Header\Parser;
 use Kopernikus\TimrReportManager\Commands\TimrOverviewCommand;
 use Kopernikus\TimrReportManager\Commands\TimrReportCommand;
 use Kopernikus\TimrReportManager\Formatter\OdooFormatter;
@@ -10,7 +9,6 @@ use Kopernikus\TimrReportManager\Formatter\RedmineFormatter;
 use Kopernikus\TimrReportManager\Services\CsvParser;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\Output;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class Timr

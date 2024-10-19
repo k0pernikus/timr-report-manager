@@ -25,15 +25,6 @@ class TimrReportCommand extends Command
         $this->setDescription($description);
     }
 
-    /**
-     * @param Collection<TimeEntry> $collection
-     */
-    public function printDailyReport(Collection $collection, OutputInterface $output): void
-    {
-        $this->formatter->setOutput($output);
-        $this->formatter->format($collection);
-    }
-
     protected function configure(): void
     {
         $this
@@ -64,5 +55,14 @@ class TimrReportCommand extends Command
             );
 
         return Command::SUCCESS;
+    }
+
+    /**
+     * @param Collection<TimeEntry> $collection
+     */
+    public function printDailyReport(Collection $collection, OutputInterface $output): void
+    {
+        $this->formatter->setOutput($output);
+        $this->formatter->format($collection);
     }
 }

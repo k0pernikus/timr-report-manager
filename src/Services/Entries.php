@@ -23,20 +23,20 @@ class Entries
     /**
      * @param Collection<TimeEntry> $collection
      */
-    public static function getTotalHours(Collection $collection): float
-    {
-        $total = static::getTotal($collection);
-
-        return round($total->totalHours, 2);
-    }
-
-    /**
-     * @param Collection<TimeEntry> $collection
-     */
     public static function getTotal(Collection $collection): CarbonInterval
     {
         return $collection
             ->reduce(fn(CarbonInterval $total, TimeEntry $item) => $total->addMinutes($item->getDuration()), new CarbonInterval())
             ->cascade();
+    }
+
+    /**
+     * @param Collection<TimeEntry> $collection
+     */
+    public static function getTotalHours(Collection $collection): float
+    {
+        $total = static::getTotal($collection);
+
+        return round($total->totalHours, 2);
     }
 }
