@@ -10,15 +10,21 @@ abstract class TimeCmdTestCase extends TestCase
 {
     protected Timr $timr;
 
-    public function createArgvCsvInput(string $cmd, string $file): ArgvInput
+    public function createArgvCsvInput(string $cmd, string $file, ?string $period = null): ArgvInput
     {
-        $input = new ArgvInput(argv: [
+        $argv = [
             'test_app', // will be stripped
             $cmd,
             "--csv",
             $file,
-        ]);
-        return $input;
+        ];
+
+        if ($period) {
+            $argv[] = "--period";
+            $argv[] = $period;
+        }
+
+        return new ArgvInput(argv: $argv);
     }
 
     protected function setUp(): void

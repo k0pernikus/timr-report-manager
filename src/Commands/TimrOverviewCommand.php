@@ -3,6 +3,7 @@
 namespace Kopernikus\TimrReportManager\Commands;
 
 use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Carbon\CarbonInterval;
 use Carbon\CarbonPeriod;
 use Illuminate\Support\Collection;
@@ -15,7 +16,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class TimrOverviewCommand extends Command
 {
-    public function __construct(private readonly CsvParser $parser, ?string $name = null)
+    public function __construct(private readonly CsvParser $parser, private readonly ?CarbonImmutable $now = new CarbonImmutable(), ?string $name = null)
     {
         parent::__construct($name);
     }
@@ -30,6 +31,13 @@ class TimrOverviewCommand extends Command
                 'c',
                 InputOption::VALUE_REQUIRED,
                 'expected vs done hours',
+            )
+            ->addOption(
+                name: 'period',
+                shortcut: 'p',
+                mode: InputOption::VALUE_OPTIONAL,
+                suggestedValues: ['day', 'week', 'month'],
+                default: 'month'
             );
     }
 
@@ -37,13 +45,18 @@ class TimrOverviewCommand extends Command
     {
         $targetHoursPerDay = 5;
 
+        $period = $input->getOption('period');
+
         $csvFile = trim($input->getOption('csv'));
         $this
             ->parser
             ->parse($csvFile)
             ->sortBy(fn(TimeEntry $entry) => $entry->start, SORT_DESC)
             ->groupBy(fn(TimeEntry $entry) => $entry->start->format('Y-m'))
-            ->map(function (Collection $items, string $group) use ($targetHoursPerDay, $output) {
+            ->map(function (Collection $items, string $group) use ($period, $targetHoursPerDay, $output) {
+                $latest = $items->last()->end;
+
+
                 $excludeDates = [
                     '2024-10-03',
                     '2024-10-04',
@@ -52,17 +65,21 @@ class TimrOverviewCommand extends Command
                 [$year, $month] = explode("-", $group);
                 $start = Carbon::create($year, $month, 1);
 
-                // fixme: if current month, until today
-                //$end = $start->copy()->endOfMonth();
-                $end = Carbon::now();
+                $end = $this->now->isSameMonth($latest) ? $this->now : $latest->end;
 
-                $amountDays = (CarbonPeriod::create($start, $end))
-                    ->filter('isWeekday')
-                    ->filter(
-                        function (Carbon $date) use ($excludeDates) {
-                            return !in_array($date->format('Y-m-d'), $excludeDates);
-                        })
-                    ->count();
+
+                $amountDays = match ($period) {
+                    'day' => 1,
+                    'week' => 7, // also must used exluded dates
+                    default => (CarbonPeriod::create($start, $end))
+                        ->filter('isWeekday')
+                        ->filter(
+                            function (Carbon $date) use ($excludeDates) {
+                                return !in_array($date->format('Y-m-d'), $excludeDates);
+                            })
+                        ->count(),
+                };
+
 
                 $targetHours = $amountDays * $targetHoursPerDay;
 
