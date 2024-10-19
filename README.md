@@ -2,7 +2,13 @@
 
 Tool to reformat timr time tracking to export it to external time tracking tools
 
-# Use Cases
+## Seals of Approvals
+
+[![unit tests](https://github.com/k0pernikus/timr-report-manager/actions/workflows/php.yml/badge.svg)](https://github.com/k0pernikus/timr-report-manager/actions/workflows/php.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/k0pernikus/timr-report-manager/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/k0pernikus/timr-report-manager/?branch=main)
+
+## Use Case
 
 Generating reports to easily and quickly forward them to external time tracking tools.
 
@@ -18,18 +24,16 @@ I have the use case to track my time both for
 
 Furthermore, this reports groups the activity by the notes.
 
-# Requirements
+## Requirements
 
 - Download your timr csv
 - https://YOUR_USER.timr.com/timr/reports/workingTime.html
 - php installed locally
 
-# Usage
+## Usage
 
 ```
-$> php timr.php format --csv path_to.csv
-
-Daily Report for global time tracking site:
+$> php timr.php format:odoo --csv path_to.csv
 
 Day total as HOURS:MINUTE: 5:15
 Day total as HOURS: 5.25
@@ -49,14 +53,16 @@ Ticket 42 (0:24)
 
 Meeting Max Mustermann (0:53)
 14:29 - 15:22
+```
 
+```
+$> php timr.php format:redmine --csv path_to.csv
 Report for a TICKETING
 Ticket 123: 2.68
 PC Adminstration: 0.15
 Call mit Heino: 1.13
 Ticket 42: 0.4
 Meeting Max Mustermann: 0.88
-
 ```
 
 The overview is also there to get a quick understanding of hours worked vs hours required.
@@ -88,3 +94,6 @@ php .\timr.php overview -c .\tests\csv\monthly.csv
 - [ ] Codestyle
 - [ ] phpstan etc.
 - [x] resolve __DIR__ issue when coding on windows using WSL
+- [x] nide badge
+- [x] github action for unit tests
+- 
