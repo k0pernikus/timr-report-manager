@@ -1,13 +1,15 @@
 DATE: 2024-10-18
-DAY TOTAL: 5:15
-    Ticket 123 (2:41)
-        09:44 - 10:06
-        12:10 - 14:29
-    PC Adminstration (0:09)
-        10:12 - 10:21
-    Call mit Heino (1:08)
-        10:22 - 11:30
-    Ticket 42 (0:24)
-        11:30 - 11:54
-    Meeting Max Mustermann (0:53)
-        14:29 - 15:22
+DAY TOTAL: 5:15 hours
+
+    09:44 - 10:06
+        #Ticket123 (0:22)
+    10:12 - 10:21
+        PC Adminstration (0:09)
+    10:22 - 11:30
+        Call mit Heino (1:08)
+    11:30 - 11:54
+        #Ticket42 (0:24)
+    12:10 - 14:29
+        doing something related to #Ticket123 and it should be billable (2:19)
+    14:29 - 15:22
+        Meeting Max Mustermann (0:53)

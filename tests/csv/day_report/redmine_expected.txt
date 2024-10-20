@@ -1,7 +1,7 @@
 Date: 2024-10-18
-Total ticketable hours:5.25
-    Ticket 123:2.68
-    PC Adminstration:0.15
-    Call mit Heino:1.13
-    Ticket 42:0.4
-    Meeting Max Mustermann:0.88
+Total hours tracked:5.25 hours
+💩Non billable hours:2.17 hours (41.33%)
+ Billable hours:3.08 hours (58.67%)
+
+󱞩 #Ticket123: 2.68 hours
+󱞩 #Ticket42: 0.4 hours

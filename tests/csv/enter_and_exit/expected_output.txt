@@ -1,6 +1,7 @@
 DATE: 2024-10-20
-DAY TOTAL: 5:00
+DAY TOTAL: 5:00 hours
+
     ENTERED office at: 12:48
-    example working time (5:00)
-        13:00 - 18:00
+    13:00 - 18:00
+        example working time (5:00)
     EXITED office at: 18:09

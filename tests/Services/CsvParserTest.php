@@ -12,8 +12,8 @@ class CsvParserTest extends TestCase
         $rootDir = __DIR__ . '/../..';
         $parser = new CsvParser($rootDir);
 
-        $expected1 = new TimeEntry('TICKET #45', '2024-10-16 14:14', end: '2024-10-16 17:12');
-        $expected2 = new TimeEntry('TICKET #45', '2024-10-16 19:30', end: '2024-10-16 22:00');
+        $fistWorkSlot = new TimeEntry('TICKET #45', '2024-10-16 14:14', end: '2024-10-16 17:12');
+        $secondWorksSlot = new TimeEntry('TICKET #45', '2024-10-16 19:30', end: '2024-10-16 22:00');
 
         /**
          * @var TimeEntry[] $result
@@ -25,14 +25,14 @@ class CsvParserTest extends TestCase
         $first = $result[0];
         $second = $result[1];
 
-        $expectedStart1 = $expected1->start->toAtomString();
-        $expectedEnd1 = $expected1->end->toAtomString();
+        $expectedStart1 = $fistWorkSlot->start->toAtomString();
+        $expectedEnd1 = $fistWorkSlot->end->toAtomString();
 
         $actualStat1 = $first->start->toAtomString();
         $actualEnd1 = $first->end->toAtomString();
 
-        $expectedStart2 = $expected2->start->toAtomString();
-        $expectedEnd2 = $expected2->end->toAtomString();
+        $expectedStart2 = $secondWorksSlot->start->toAtomString();
+        $expectedEnd2 = $secondWorksSlot->end->toAtomString();
 
         $actualStat2 = $second->start->toAtomString();
         $actualEnd2 = $second->end->toAtomString();
@@ -52,12 +52,14 @@ class CsvParserTest extends TestCase
         $this::assertSame(
             expected: $expectedStart2,
             actual: $actualStat2,
-            message: 'the start date must be the first possible option as the task was started then'
+            message: 'the start date must be the second possible option as the task was started after a break'
         );
         $this::assertSame(
             expected: $expectedEnd2,
             actual: $actualEnd2,
-            message: 'the end date must be the second latest option as there was a break'
+            message: 'the end date must be the latest option'
         );
+
+        $this::assertCount(2, $result, 'it should only contain two items');
     }
 }

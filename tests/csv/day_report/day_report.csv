@@ -1,7 +1,7 @@
-***REMOVED***
-27381256,"Philipp K.","",,"Anwesenheitszeit","Ticket 123  ",18.10.2024 09:44,18.10.2024 10:06,false,"","","0,37",0,Veränderbar,100
+Id,User,Employee Number,Organization,Type,Notes,Start,End,Manually changed,Start Position,End Position,Duration,Break,Status,Status number
+27381256,"Philipp K.","",,"Anwesenheitszeit"," #Ticket123  ",18.10.2024 09:44,18.10.2024 10:06,false,"","","0,37",0,Veränderbar,100
 27381513,"Philipp K.","",,"Anwesenheitszeit","PC Adminstration",18.10.2024 10:12,18.10.2024 10:21,false,"","","0,15",0,Veränderbar,100
 27383076,"Philipp K.","",,"Anwesenheitszeit","Call mit Heino  ",18.10.2024 10:22,18.10.2024 11:30,false,"","","1,13",0,Veränderbar,100
-27383784,"Philipp K.","",,"Anwesenheitszeit","Ticket 42",18.10.2024 11:30,18.10.2024 11:54,true,"","","0,40",0,Veränderbar,100
-27391122,"Philipp K.","",,"Anwesenheitszeit","Ticket 123",18.10.2024 12:10,18.10.2024 14:29,true,"","","2,32",0,Veränderbar,100
+27383784,"Philipp K.","",,"Anwesenheitszeit","#Ticket42",18.10.2024 11:30,18.10.2024 11:54,true,"","","0,40",0,Veränderbar,100
+27391122,"Philipp K.","",,"Anwesenheitszeit","doing something related to #Ticket123 and it should be billable",18.10.2024 12:10,18.10.2024 14:29,true,"","","2,32",0,Veränderbar,100
 27393324,"Philipp K.","",,"Anwesenheitszeit","Meeting Max Mustermann  ",18.10.2024 14:29,18.10.2024 15:22,false,"","","0,88",0,Veränderbar,100

@@ -18,7 +18,8 @@ class OdooFormatter extends AbstractFormatter
 
         $total = Entries::getTotalForHumans($entries);
 
-        $this->printLn("DAY TOTAL: <info>$total</info>", 0);
+        $this->printLn("DAY TOTAL: <info>$total</info> hours", 0);
+        $this->printLn();
 
         $grouped->each(
             function (Collection $collection, $group) {
@@ -37,7 +38,7 @@ class OdooFormatter extends AbstractFormatter
      */
     private function printEnteringAndExiting(Collection $c, string $group): void
     {
-        $first = $c->first(); // handle multiple commings and goings
+        $first = $c->first(); // fixme: handle multiple comings and goings
         $time = $first->start->format('H:i');
 
         $msg = match ($group) {
@@ -68,12 +69,11 @@ class OdooFormatter extends AbstractFormatter
         $times = $sorted->map(function (TimeEntry $entry) {
             return $this->getTimeSlotMsg($entry);
         })->toArray();
-        $this->printLn("$group (" . Entries::getTotalForHumans($collection) . ")", 1);
+
 
         foreach ($times as $time) {
-            $this->printLn($time, 2);
+            $this->printLn($time, 1);
         }
+        $this->printLn("$group (" . Entries::getTotalForHumans($collection) . ")", 2);
     }
-
-
 }
