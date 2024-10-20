@@ -1,3 +1,5 @@
 /vendor/
 .idea/
 tests/csv/monthly.csv
+coverage-report-html/
+coverage.xml

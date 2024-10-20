@@ -29,6 +29,8 @@
     },
     "scripts": {
         "tests": "./vendor/bin/phpunit tests/",
+        "tests:html-coverage": "./vendor/bin/phpunit --coverage-html coverage-report-html --coverage-filter './src/' tests/",
+        "tests:clover": "./vendor/bin/phpunit --coverage-clover coverage.xml --coverage-filter './src/' tests/",
         "fix": "./vendor/bin/phpcbf  --standard=PSR12 tests/ src/",
         "cs": "./vendor/bin/phpcs --standard=PSR12  src/ tests/"
     }

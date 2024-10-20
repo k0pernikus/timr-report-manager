@@ -6,9 +6,6 @@ on:
     pull_request:
         branches: [ "main" ]
 
-permissions:
-    contents: read
-
 jobs:
     build:
 
@@ -21,6 +18,7 @@ jobs:
                 uses: shivammathur/setup-php@v2
                 with:
                     php-version: '8.3'
+                    extensions: xdebug
 
             -   name: Validate composer.json and composer.lock
                 run: composer validate --strict
@@ -38,4 +36,13 @@ jobs:
                 run: composer install --prefer-dist --no-progress
 
             -   name: Run test suite
-                run: composer run-script tests
+                run: composer run-script tests:clover
+
+            - name: Download Ocular
+              run: |
+                  curl -L -o ocular.phar https://scrutinizer-ci.com/ocular.phar
+                  chmod +x ocular.phar
+
+            - name: Upload coverage report to Scrutinizer
+              run: |
+                  php ocular.phar code-coverage:upload --format=clover coverage.xml
