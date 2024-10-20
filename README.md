@@ -27,7 +27,8 @@ Furthermore, this reports groups the activity by the notes.
 ## Requirements
 
 - Download your timr csv
-- https://YOUR_USER.timr.com/timr/reports/workingTime.html
+- [My page](https://kopernikus.timr.com/timr/recording/workingTime.html)
+- You may use: https://__YOUR_USER__.timr.com/timr/reports/workingTime.html
 - php installed locally
 
 ## Usage
