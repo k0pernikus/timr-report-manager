@@ -81,6 +81,7 @@ php .\timr.php overview -c .\tests\csv\monthly.csv
 - [x] automatically summarize activities having the same end and start date when having the same note
 - [ ] should show expectations on a week and monthly basis
 - [ ] support different languages
+- [ ] allow a 0 minute entry at the start and of the day, they should not be counted as work time. treat them as in office out of office markers
 
 ## Nice to haves:
 
@@ -96,4 +97,3 @@ php .\timr.php overview -c .\tests\csv\monthly.csv
 - [x] resolve __DIR__ issue when coding on windows using WSL
 - [x] nide badge
 - [x] github action for unit tests
-- 
