@@ -54,4 +54,4 @@ jobs:
 
             -   name: Upload coverage report to Scrutinizer
                 run: |
-                    php ocular.phar code-coverage:upload --api-url="https://scrutinizer-ci.com/api" --format=clover --repository="k0pernikus/timr-report-manager" --revision="${{ github.sha }}" coverage.xml
+                    php ocular.phar code-coverage:upload --format=php-clover coverage.xml --verbose
