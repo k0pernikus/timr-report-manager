@@ -1,0 +1,7 @@
+Date: 2024-10-18
+Total ticketable hours:5.25
+    Ticket 123:2.68
+    PC Adminstration:0.15
+    Call mit Heino:1.13
+    Ticket 42:0.4
+    Meeting Max Mustermann:0.88

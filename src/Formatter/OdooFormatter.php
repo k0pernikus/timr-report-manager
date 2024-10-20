@@ -11,34 +11,69 @@ class OdooFormatter extends AbstractFormatter
     /**
      * @param Collection<int,TimeEntry> $entries
      */
-    public function format(Collection $entries): void
+    public function format(Collection $entries, string $day): void
     {
+        $this->printLn('DATE: <comment>' . $day . '</comment>', 0);
         $grouped = $entries->groupBy(fn(TimeEntry $item) => $item->description);
-        $output = $this->output;
 
         $total = Entries::getTotalForHumans($entries);
-        $hours = Entries::getTotalHours($entries);
 
-        $output->writeln("Day total as HOURS:MINUTE: <info>$total</info>");
-        $output->writeln("Day total as HOURS: <info>$hours</info>");
+        $this->printLn("DAY TOTAL: <info>$total</info>", 0);
 
         $grouped->each(
-            function (Collection $collection, $group) use ($output) {
-                $sorted = $collection->sortBy(fn(TimeEntry $entry) => $entry->start->valueOf(), SORT_ASC);
-
-                $times = $sorted->map(function (TimeEntry $entry) {
-                    $start = $entry->start->format('H:i');
-                    $end = $entry->end->format('H:i');
-
-                    return $start . ' - ' . $end;
-                })->toArray();
-                $output->writeln('');
-                $output->writeln("$group (" . Entries::getTotalForHumans($collection) . ")");
-
-                foreach ($times as $time) {
-                    $output->writeln($time);
-                }
+            function (Collection $collection, $group) {
+                match (trim($group)) {
+                    'enter', 'exit' => $this->printEnteringAndExiting($collection, $group),
+                    default => $this->printTimeSlot($collection, $group),
+                };
             }
         );
+
+        $this->printLn("");
     }
+
+    /**
+     * @param Collection<int,TimeEntry> $c
+     */
+    private function printEnteringAndExiting(Collection $c, string $group): void
+    {
+        $first = $c->first(); // handle multiple commings and goings
+        $time = $first->start->format('H:i');
+
+        $msg = match ($group) {
+            'enter' => 'ENTERED office at: ' . $time,
+            'exit' => 'EXITED office at: ' . $time,
+            default => throw new \LogicException('Invalid TimeEntry, must be either enter or exit type'),
+        };
+
+        $this->printLn($msg, 1);
+    }
+
+    private function getTimeSlotMsg(TimeEntry $e): string
+    {
+        $start = $e->start->format('H:i');
+        $end = $e->end->format('H:i');
+
+        return $start . ' - ' . $end;
+    }
+
+    /**
+     * @param Collection<int,TimeEntry> $collection
+     */
+    private function printTimeSlot(Collection $collection, string $group)
+    {
+        $sorted = $collection
+            ->sortBy(fn(TimeEntry $entry) => $entry->start->valueOf(), SORT_ASC);
+
+        $times = $sorted->map(function (TimeEntry $entry) {
+            return $this->getTimeSlotMsg($entry);
+        })->toArray();
+        $this->printLn("$group (" . Entries::getTotalForHumans($collection) . ")", 1);
+
+        foreach ($times as $time) {
+            $this->printLn($time, 2);
+        }
+    }
+
+
 }

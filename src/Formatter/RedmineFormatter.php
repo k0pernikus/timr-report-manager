@@ -8,15 +8,26 @@ use Kopernikus\TimrReportManager\Services\Entries;
 
 class RedmineFormatter extends AbstractFormatter
 {
-    public function format(Collection $entries): void
+    public function format(Collection $entries, string $day): void
     {
-        $output = $this->output;
+        $total = Entries::getTotalHours($entries);
+
+        $this->printLn("Date: <info>$day</info>");
+        $this->printLn("Total ticketable hours:<info>$total</info>");
+
         $grouped = $entries->groupBy(fn(TimeEntry $item) => $item->description);
-        $output->writeln("\n\nTICKETING");
         $grouped->each(
-            function (Collection $collection, $group) use ($output) {
-                $output->writeln($group . ":" . Entries::getTotalHours($collection));
+            function (Collection $collection, $group) {
+                match ($group) {
+                    'enter', 'exit' => null,
+                    default => $this->printLn(
+                        $group . ":<comment>" . Entries::getTotalHours($collection) . '</comment>',
+                        1
+                    ),
+                };
             }
         );
+
+        $this->printLn('');
     }
 }

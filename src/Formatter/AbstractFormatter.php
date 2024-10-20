@@ -13,11 +13,24 @@ abstract class AbstractFormatter
     /**
      * @param Collection<int,TimeEntry> $entries
      */
-    abstract public function format(Collection $entries): void;
+    abstract public function format(Collection $entries, string $day): void;
 
     public function setOutput(OutputInterface $output): AbstractFormatter
     {
         $this->output = $output;
         return $this;
+    }
+
+    protected function printLn(string $msg, int $indentationLevel = 0, $char = ' ', $amountCharsPerLevel = '4')
+    {
+        if ($indentationLevel <= 0) {
+            $this->output->writeln($msg);
+            return;
+        }
+
+        $amount = $indentationLevel * $amountCharsPerLevel;
+        $prefix = str_repeat($char, $amount);
+
+        $this->output->writeln($prefix . $msg);
     }
 }

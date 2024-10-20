@@ -47,10 +47,7 @@ class TimrReportCommand extends Command
             ->groupBy(fn(TimeEntry $entry) => $entry->start->format('Y-m-d'))
             ->each(
                 function ($collection, $day) use ($output) {
-                    $output->writeln("Date: $day");
-                    $output->writeln('');
-                    $this->printDailyReport($collection, $output);
-                    $output->writeln(str_repeat('-', 80));
+                    $this->printDailyReport($collection, $output, $day);
                 }
             );
 
@@ -60,9 +57,9 @@ class TimrReportCommand extends Command
     /**
      * @param Collection<int,TimeEntry> $collection
      */
-    public function printDailyReport(Collection $collection, OutputInterface $output): void
+    public function printDailyReport(Collection $collection, OutputInterface $output, string $day): void
     {
         $this->formatter->setOutput($output);
-        $this->formatter->format($collection);
+        $this->formatter->format($collection, $day);
     }
 }

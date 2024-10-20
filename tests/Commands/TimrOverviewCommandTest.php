@@ -9,13 +9,16 @@ class TimrOverviewCommandTest extends TimeCmdTestCase
 {
     public function testTimrOverviewCommand()
     {
-        $input = $this->createArgvCsvInput('overview', 'tests/csv/day_report.csv', period: 'day');
+        $input = $this->createArgvCsvInput('overview', 'tests/csv/day_report/day_report.csv', period: 'day');
         $buffered = new BufferedOutput();
         $exitCode = $this->timr->run($input, $buffered);
 
+        $path = __DIR__ . '/../csv/day_report/';
+        $expected = file_get_contents($path . 'ticketing_overview_expected.txt');
+
         $this::assertSame(
-            expected: "2024-10: Expected 5 / Delivered 5.25\n",
-            actual: $buffered->fetch()
+            expected: $expected,
+            actual: trim($buffered->fetch())
         );
     }
 }
