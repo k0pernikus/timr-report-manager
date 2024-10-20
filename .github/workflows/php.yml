@@ -42,12 +42,16 @@ jobs:
                 run: ls -al coverage.xml
 
 
-            - name: Set up PHP 7.4 for Ocular
-              uses: shivammathur/setup-php@v2
-              with:
-                  php-version: '7.4'
-                  extensions: xdebug  # PHP 7.4 environment now available
+            -   name: Set up PHP 7.4 for Ocular
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: '7.4'
 
-            - name: Upload coverage report to Scrutinizer
-              run: |
-                  php ocular.phar code-coverage:upload --api-url="https://scrutinizer-ci.com/api" --format=clover --repository="k0pernikus/timr-report-manager" --revision="${{ github.sha }}" coverage.xml
+            -   name: Download Ocular
+                run: |
+                    curl -L -o ocular.phar https://scrutinizer-ci.com/ocular.phar
+                    chmod +x ocular.phar                  
+
+            -   name: Upload coverage report to Scrutinizer
+                run: |
+                    php ocular.phar code-coverage:upload --api-url="https://scrutinizer-ci.com/api" --format=clover --repository="k0pernikus/timr-report-manager" --revision="${{ github.sha }}" coverage.xml
