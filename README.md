@@ -24,6 +24,19 @@ I have the use case to track my time both for
 
 Furthermore, this reports groups the activity by the notes.
 
+# Conventions
+
+## Keywords in Notes
+## Location
+- enter: means entry of office location, won't be considered working time
+  - an entry having same start and same entry will also be considered as an entry/exit point
+- exit: time marker when one has left the office
+
+## Ticket
+
+- `#` prefix, or any message containing a tag, e.g. `#123` or `#jobDescription` will shown in the ticketing overview
+- other entries without these markers won't show in the ticketing report 
+
 ## Requirements
 
 - Download your timr csv
@@ -79,6 +92,8 @@ php .\timr.php overview -c .\tests\csv\monthly.csv
 
 - [ ] be able to use both "Type" as "Notes" as notes as task descriptor, at best via flag
 - [ ] in the ticket report, only show activities having a ticket id number included
+- [ ] support keywords, `exit`, `enter`, and tags `#{any_tag_starting_with_hashtag}`
+- [ ] tags should be discovered even if only part of the text (yet only one tag may be part of the note)
 - [x] automatically summarize activities having the same end and start date when having the same note
 - [ ] should show expectations on a week and monthly basis
 - [ ] support different languages

@@ -30,4 +30,20 @@ class TimrFormatCommandTest extends TimeCmdTestCase
             actual: $actual,
         );
     }
+
+    public function testItShowOfficeEntryAndExit()
+    {
+        $input = $this->createArgvCsvInput('format:oddoo', 'tests/csv/enter_and_exit/enter_and_exit.csv');
+        $buffered = new BufferedOutput();
+        $this->timr->run($input, $buffered);
+
+        $path = __DIR__ . '/../../tests/csv/enter_and_exit/expected_output.txt';
+        $expectedResult = trim(file_get_contents($path));
+
+        $actual = trim($buffered->fetch());
+        $this::assertSame(
+            expected: $expectedResult,
+            actual: $actual,
+        );
+    }
 }

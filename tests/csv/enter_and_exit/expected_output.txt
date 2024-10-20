@@ -1,0 +1,12 @@
+Date: 2024-10-20
+
+Day total as HOURS:MINUTE: 5:00
+Day total as HOURS: 5
+
+Entered office at: 12:48
+
+example working time (5:00)
+13:00 - 18:00
+
+Exited office at: 18:09
+--------------------------------------------------------------------------------
