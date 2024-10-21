@@ -12,26 +12,28 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - name: Checkout repository
-              uses: actions/checkout@v2
+            -   name: Checkout repository
+                uses: actions/checkout@v2
 
             -   name: Update README
                 run: |
-                    ODOO_EXAMPLE=$(cat tests/csv/day_report/odoo_expected.txt | sed 's/[&/\]/\\&/g')
-                    REDMINE_EXAMPLE=$(cat tests/csv/day_report/redmine_expected.txt | sed 's/[&/\]/\\&/g')
+                    ODOO_EXAMPLE=$(cat tests/csv/day_report/odoo_expected.txt)
+                    REDMINE_EXAMPLE=$(cat tests/csv/day_report/redmine_expected.txt)
                     
-                    echo "ODOO_EXAMPLE: $ODOO_EXAMPLE"
+                    # Read the README file into a variable
+                    README_CONTENT=$(cat README.md)
                     
-                    echo "REDMINE_EXAMPLE: $REDMINE_EXAMPLE"
+                    # Replace the placeholders
+                    README_CONTENT="${README_CONTENT//ODOO_EXAMPLE/$ODOO_EXAMPLE}"
+                    README_CONTENT="${README_CONTENT//REDMINE_EXAMPLE/$REDMINE_EXAMPLE}"
                     
-                    # Update the README.md file
-                    sed -i "s|ODOO_EXAMPLE|$ODOO_EXAMPLE|g" README.md
-                    sed -i "s|REDMINE_EXAMPLE|$REDMINE_EXAMPLE|g" README.md
+                    # Write the updated content back to README.md
+                    echo "$README_CONTENT" > README.md
 
-            - name: Commit changes
-              run: |
-                  git config --local user.name "github-actions"
-                  git config --local user.email "github-actions@github.com"
-                  git add README.md
-                  git commit -m "Update README with latest examples" || echo "No changes to commit"
-                  git push
+            -   name: Commit changes
+                run: |
+                    git config --local user.name "github-actions"
+                    git config --local user.email "github-actions@github.com"
+                    git add README.md
+                    git commit -m "Update README with latest examples" || echo "No changes to commit"
+                    git push
