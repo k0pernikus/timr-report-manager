@@ -30,7 +30,10 @@ jobs:
                     # Write the updated content back to README.md
                     echo "$README_CONTENT" > README.md
 
+
             -   name: Commit changes
+                env:
+                    GITHUB_TOKEN: ${{ secrets.PATCH_TOKEN }}
                 run: |
                     git config --local user.name "github-actions"
                     git config --local user.email "github-actions@github.com"
