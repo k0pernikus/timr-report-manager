@@ -2,7 +2,7 @@ DATE: 2024-10-18
 DAY TOTAL: 5:15 hours
 
     09:44 - 10:06 (22 min)
-        #ticket123: #Ticket123
+        #ticket123
     | 
     | 6 min break
     | 
