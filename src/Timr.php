@@ -25,11 +25,6 @@ class Timr
         $this->app = $app;
     }
 
-    public function run(?InputInterface $input = null, ?OutputInterface $output = null): int
-    {
-        return $this->app->run($input, $output);
-    }
-
     /**
      * @return Command[]
      */
@@ -54,5 +49,10 @@ class Timr
         }
 
         return $app;
+    }
+
+    public function run(?InputInterface $input = null, ?OutputInterface $output = null): int
+    {
+        return $this->app->run($input, $output);
     }
 }

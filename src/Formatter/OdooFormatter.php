@@ -8,6 +8,14 @@ use Kopernikus\TimrReportManager\Services\Entries;
 
 class OdooFormatter extends AbstractFormatter
 {
+    private function getTimeSlotMsg(TimeEntry $e): string
+    {
+        $start = $e->start->format('H:i');
+        $end = $e->end->format('H:i');
+
+        return $start . ' - ' . $end;
+    }
+
     /**
      * @param Collection<int,TimeEntry> $entries
      */
@@ -48,14 +56,6 @@ class OdooFormatter extends AbstractFormatter
         };
 
         $this->printLn($msg, 1);
-    }
-
-    private function getTimeSlotMsg(TimeEntry $e): string
-    {
-        $start = $e->start->format('H:i');
-        $end = $e->end->format('H:i');
-
-        return $start . ' - ' . $end;
     }
 
     /**

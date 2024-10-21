@@ -10,12 +10,14 @@ Tool to reformat timr time tracking to export it to external time tracking tools
 [![Code Coverage](https://scrutinizer-ci.com/g/k0pernikus/timr-report-manager/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/k0pernikus/timr-report-manager/?branch=main)
 
 ## Use Case
+
 Generating reports to easily and quickly forward them to external time tracking tools.
 
 Timr in its free version has the limitation to only track one activity. One can use the Notes annotation field as a "
 task descriptor".
 
 I have the use case to track my time both for:
+
 - total work time over the course of a day (e.g. 'phone call with hannes', 'ticket #123', 'writing ticket')
 - time spent on specific tasks (e.g. a ticket #123)
 - it shows the hours both in the hour:minute (e.g. `5:15`), and as hours (e.g. `5.25`) for working with different time
@@ -87,21 +89,19 @@ php .\timr.php overview -c .\tests\csv\monthly.csv
 
 - [x] in the ticket report, only show activities having a ticket id number included
 - [x] support keywords, `exit`, `enter`, ...
-  - [ ] `enter`, `exit` can happen multiple times a day
+    - [ ] `enter`, `exit` can happen multiple times a day
 - [ ] ... and tags `#{any_tag_starting_with_hashtag}`
 - [ ] tags should be discovered even if only part of the text (yet only one tag may be part of the note)
 - [x] automatically summarize activities having the same end and start date when having the same note
 - [ ] should show expectations on a week and monthly basis
 - [ ] support different languages
 
-
-
 ## Nice to haves:
 
 - [ ] also show break times over the course of a day
 - [ ] vacations, sick days, and holidays instead of hardcoded
 - [ ] be able to use both "Type" as "Notes" as notes as task descriptor, at best via flag
-  - free tier only allows two types anyway, maybe WONTFIX
+    - free tier only allows two types anyway, maybe WONTFIX
 - [x] formatting
 - [ ] distinguish / filter out user
 - [ ] support different languages

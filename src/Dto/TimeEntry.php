@@ -16,8 +16,7 @@ class TimeEntry
         string $description,
         string $start,
         string $end
-    )
-    {
+    ) {
         $description = trim($description);
         $this->description = empty($description) ? 'UNCATEGORIZED' : $description;
         $this->ticket = $this->getTicket($description);
@@ -27,11 +26,6 @@ class TimeEntry
         $this->end = Carbon::parse($end)->toImmutable();
     }
 
-    public function getDuration(): int
-    {
-        return (int)$this->start->diffInMinutes($this->end);
-    }
-
     private function getTicket($description): ?string
     {
         if (preg_match("/#(\w+)/", $description, $matches)) {
@@ -39,5 +33,10 @@ class TimeEntry
         } else {
             return null;
         }
+    }
+
+    public function getDuration(): int
+    {
+        return (int)$this->start->diffInMinutes($this->end);
     }
 }

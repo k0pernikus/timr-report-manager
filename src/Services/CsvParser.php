@@ -31,8 +31,7 @@ class CsvParser
                 $mergedEntries = collect();
                 $currentMergedEntry = $groupedEntries->first();
 
-                foreach ($groupedEntries as $entry)
-                {
+                foreach ($groupedEntries as $entry) {
                     if (!$currentMergedEntry) {
                         $currentMergedEntry = $entry;
 
