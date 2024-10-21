@@ -8,6 +8,7 @@ on:
         paths:
             - 'tests/csv/day_report/odoo_expected.txt'
             - 'tests/csv/day_report/redmine_expected.txt'
+            - 'docs/README.md'
             - 'README.md'
     workflow_dispatch:
 
@@ -24,14 +25,11 @@ jobs:
                     ODOO_EXAMPLE=$(cat tests/csv/day_report/odoo_expected.txt)
                     REDMINE_EXAMPLE=$(cat tests/csv/day_report/redmine_expected.txt)
                     
-                    # Read the README file into a variable
-                    README_CONTENT=$(cat README.md)
+                    README_CONTENT=$(cat docs/README.md)
                     
-                    # Replace the placeholders
                     README_CONTENT="${README_CONTENT//ODOO_EXAMPLE/$ODOO_EXAMPLE}"
                     README_CONTENT="${README_CONTENT//REDMINE_EXAMPLE/$REDMINE_EXAMPLE}"
-                    
-                    # Write the updated content back to README.md
+
                     echo "$README_CONTENT" > README.md
 
 
