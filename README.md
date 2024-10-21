@@ -29,51 +29,34 @@ Furthermore, this reports groups the activity by the notes.
 
 ## Keywords in Notes
 
-## Location
+### Location
 
 - enter: means entry of office location, won't be considered working time
     - an entry having same start and same entry will also be considered as an entry/exit point
 - exit: time marker when one has left the office
 
-## Ticket
+### Ticket
 
 - `#` prefix, or any message containing a tag, e.g. `#123` or `#jobDescription` will shown in the ticketing overview
 - other entries without these markers won't show in the ticketing report
 
-## Requirements
+# Requirements
 
 - Download your timr csv
 - [My page](https://kopernikus.timr.com/timr/reports/workingTime.html)
 - You may use: https://__YOUR_USER__.timr.com/timr/reports/workingTime.html
 - php installed locally
 
-## Usage
+# Usage
 
 ```
 $> php timr.php format:odoo --csv path_to.csv
-DATE: 2024-10-18
-DAY TOTAL: 5:15
-    #Ticket123 (2:41)
-        09:44 - 10:06
-        12:10 - 14:29
-    PC Adminstration (0:09)
-        10:12 - 10:21
-    Call mit Heino (1:08)
-        10:22 - 11:30
-    #Ticket42 (0:24)
-        11:30 - 11:54
-    Meeting Max Mustermann (0:53)
-        14:29 - 15:22
+ODOO_EXAMPLE
 ```
 
 ```
 $> php timr.php format:redmine --csv path_to.csv
-Date: 2024-10-18
-Total ticketable hours:3
-    #Ticket123: 2.68 h
-    #Ticket42: 0.4 h
-    
-Non Billable Hours: 2
+REDMINE_EXAMPLE
 ```
 
 The overview is also there to get a quick understanding of hours worked vs hours required.
