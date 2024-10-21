@@ -8,6 +8,7 @@ on:
         paths:
             - 'tests/csv/day_report/odoo_expected.txt'
             - 'tests/csv/day_report/redmine_expected.txt'
+            - 'README.md'
     workflow_dispatch:
 
 jobs:

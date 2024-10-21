@@ -31,21 +31,31 @@ Furthermore, this reports groups the activity by the notes.
 
 ### Location
 
-- enter: means entry of office location, won't be considered working time
+- `enter`: means entry of office location, won't be considered working time
     - an entry having same start and same entry will also be considered as an entry/exit point
-- exit: time marker when one has left the office
+- `exit`: time marker when one has left the office
 
 ### Ticket
 
-- `#` prefix, or any message containing a tag, e.g. `#123` or `#jobDescription` will shown in the ticketing overview
+- `#` prefix, or any message containing a tag, e.g. `#123` or `#jobDescription` will be shown in the ticketing overview
 - other entries without these markers won't show in the ticketing report
+- only one tag per time entry allowed
 
 # Requirements
 
 - Download your timr csv
 - [My page](https://kopernikus.timr.com/timr/reports/workingTime.html)
 - You may use: https://__YOUR_USER__.timr.com/timr/reports/workingTime.html
-- php installed locally
+- php^8.0
+
+# Installation
+
+```
+git clone git@github.com:k0pernikus/timr-report-manager.git
+cd timr-report-manager
+composer install
+php timr.php
+``` 
 
 # Usage
 
@@ -101,22 +111,22 @@ php .\timr.php overview -c .\tests\csv\monthly.csv
 
 ## Nice to haves:
 
-- [ ] also show break times over the course of a day
 - [ ] vacations, sick days, and holidays instead of hardcoded
-- [ ] be able to use both "Type" as "Notes" as notes as task descriptor, at best via flag
-    - free tier only allows two types anyway, maybe WONTFIX
+- [ ] also show break times over the course of a day
 - [x] formatting
-- [ ] distinguish / filter out user
 - [ ] support different languages
+- [ ] distinguish / filter out user
+- [ ] be able to use both "Type" as "Notes" as notes as task descriptor, at best via flag
+  - free tier only allows two types anyway, maybe WONTFIX
 
 ## DX Experience
 
 - [ ] Codestyle
-- [ ] code coverage
 - [x] phpstan
 - [x] resolve __DIR__ issue when coding on windows using WSL
 - [x] nice badges
 - [x] github action for unit tests
 - [x] scrutinzer
-- [ ] scrutinizer code coverage
-- [ ] code coverage
+- [x] automatically update README.md examples
+- [x] scrutinizer code coverage
+- [x] code coverage
