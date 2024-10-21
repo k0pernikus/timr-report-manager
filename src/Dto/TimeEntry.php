@@ -19,7 +19,7 @@ class TimeEntry
     )
     {
         $description = trim($description);
-        $this->description = empty($description) ? 'UNCATEGORIZED' : $description;
+        $this->description = empty($description) ? 'UNCATEGORIZED' : trim($description);
         $this->ticket = $this->getTicket($description);
 
 
@@ -30,7 +30,7 @@ class TimeEntry
     private function getTicket($description): ?string
     {
         if (preg_match("/#(\w+)/", $description, $matches)) {
-            return '#' . strtolower($matches[1]);
+            return trim('#' . strtolower($matches[1]));
         } else {
             return null;
         }

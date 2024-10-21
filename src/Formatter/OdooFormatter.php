@@ -72,8 +72,8 @@ class OdooFormatter extends AbstractFormatter
         $duration = $e->getDuration();
         $time = $this->getTimeSlotMsg($e);
         $this->printLn("$time ($duration min)", 1);
-        $descriptor = $e->ticket ?? 'other';
-        $explanation = (strtolower(trim($e->description)) === strtolower(trim($e->ticket || ''))) || $e->description === 'UNCATEGORIZED' ? '' : ": $e->description";
+        $descriptor = $e->ticket === null ? 'other' : "$e->ticket";
+        $explanation = (strtolower($e->description) === $e->ticket) ? '' : ": $e->description";
         $this->printLn("{$descriptor}{$explanation}", 2);
     }
 }

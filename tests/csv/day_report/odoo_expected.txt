@@ -14,7 +14,7 @@ DAY TOTAL: 5:15 hours
     10:22 - 11:30 (68 min)
         other: Call mit Heino
     11:30 - 11:54 (24 min)
-        #ticket42: #Ticket42
+        #ticket42
     | 
     | 16 min break
     | 
