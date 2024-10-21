@@ -21,7 +21,12 @@ abstract class AbstractFormatter
         return $this;
     }
 
-    protected function printLn(string $msg = '', int $indentationLevel = 0, $char = ' ', $amountCharsPerLevel = '4')
+    protected function printLn(
+        string $msg = '',
+        int $indentationLevel = 0,
+        $char = ' ',
+        int $amountCharsPerLevel = 4,
+    )
     {
         if ($indentationLevel <= 0) {
             $this->output->writeln($msg);

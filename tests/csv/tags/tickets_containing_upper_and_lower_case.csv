@@ -1,0 +1,8 @@
+Id,User,Employee Number,Organization,Type,Notes,Start,End,Manually changed,Start Position,End Position,Duration,Break,Status,Status number
+27410575,"Philipp K.","",,"Anwesenheitszeit","enter",21.10.2024 09:28,21.10.2024 09:28,false,"","","0,00",0,Changeable,100
+27413368,"Philipp K.","",,"Anwesenheitszeit","#checkbox",21.10.2024 10:32,21.10.2024 11:00,true,"","","0,47",0,Changeable,100
+27417505,"Philipp K.","",,"Anwesenheitszeit","le #CheckBox",21.10.2024 11:10,21.10.2024 13:00,true,"","","1,83",0,Changeable,100
+27419604,"Philipp K.","",,"Anwesenheitszeit","developing #Checkbox",21.10.2024 13:05,21.10.2024 14:10,false,"","","1,08",0,Changeable,100
+27419986,"Philipp K.","",,"Anwesenheitszeit","",21.10.2024 14:18,21.10.2024 14:25,true,"","","0,12",0,Changeable,100
+27421923,"Philipp K.","",,"Anwesenheitszeit","#Checkbox",21.10.2024 14:25,21.10.2024 15:14,true,"","","0,82",0,Changeable,100
+27422426,"Philipp K.","",,"Anwesenheitszeit","exit ",21.10.2024 15:25,21.10.2024 15:25,true,"","","0,00",0,Changeable,100

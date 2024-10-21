@@ -39,6 +39,7 @@ class TimrFormatCommandTest extends TimeCmdTestCase
         $this::assertSame(
             expected: $expectedResult,
             actual: $actual,
+            message: $cmdName,
         );
     }
 
@@ -49,6 +50,23 @@ class TimrFormatCommandTest extends TimeCmdTestCase
         $this->timr->run($input, $buffered);
 
         $path = __DIR__ . '/../../tests/csv/enter_and_exit/expected_output.txt';
+        $expectedResult = trim(file_get_contents($path));
+
+        $actual = trim($buffered->fetch());
+        $this::assertSame(
+            expected: $expectedResult,
+            actual: $actual,
+        );
+    }
+
+    public function testItIgnoresCaseForTicket()
+    {
+        $input = $this->createArgvCsvInput('format:redmine', 'tests/csv/tags/tickets_containing_upper_and_lower_case.csv');
+
+        $buffered = new BufferedOutput();
+        $this->timr->run($input, $buffered);
+
+        $path = __DIR__ . '/../../tests/csv/tags/redmine_report_only_with_one_checkbox_tag.txt';
         $expectedResult = trim(file_get_contents($path));
 
         $actual = trim($buffered->fetch());

@@ -8,6 +8,8 @@ use Kopernikus\TimrReportManager\Services\Entries;
 
 class OdooFormatter extends AbstractFormatter
 {
+    private ?TimeEntry $previous = null;
+
     private function getTimeSlotMsg(TimeEntry $e): string
     {
         $start = $e->start->format('H:i');
@@ -21,22 +23,32 @@ class OdooFormatter extends AbstractFormatter
      */
     public function format(Collection $entries, string $day): void
     {
+        $this->previous = null;
+
         $this->printLn('DATE: <comment>' . $day . '</comment>', 0);
-        $grouped = $entries->groupBy(fn(TimeEntry $item) => $item->description);
 
         $total = Entries::getTotalForHumans($entries);
 
         $this->printLn("DAY TOTAL: <info>$total</info> hours", 0);
         $this->printLn();
 
-        $grouped->each(
-            function (Collection $collection, $group) {
-                match (trim($group)) {
-                    'enter', 'exit' => $this->printEnteringAndExiting($collection, $group),
-                    default => $this->printTimeSlot($collection, $group),
-                };
+        $entries->each(function (TimeEntry $e) {
+            $diffInMinutes = $e->getDiff($this->previous);
+
+            if ($diffInMinutes > 0) {
+                $this->printLn('| ', 1);
+                $this->printLn('| ' . "$diffInMinutes min break", 1);
+                $this->printLn('| ', 1);
             }
-        );
+
+
+            match (trim($e->description)) {
+                'enter', 'exit' => $this->printEnteringAndExiting($e),
+                default => $this->printTimeSlot($e),
+            };
+
+            $this->previous = $e;
+        });
 
         $this->printLn("");
     }
@@ -44,36 +56,24 @@ class OdooFormatter extends AbstractFormatter
     /**
      * @param Collection<int,TimeEntry> $c
      */
-    private function printEnteringAndExiting(Collection $c, string $group): void
+    private function printEnteringAndExiting(TimeEntry $e): void
     {
-        $first = $c->first(); // fixme: handle multiple comings and goings
-        $time = $first->start->format('H:i');
+        $time = $e->start->format('H:i');
 
-        $msg = match ($group) {
-            'enter' => 'ENTERED office at: ' . $time,
-            'exit' => 'EXITED office at: ' . $time,
+        match ($e->description) {
+            'enter' => $this->printLn('ENTERED office at: ' . $time, 1),
+            'exit' => $this->printLn("EXITED office at: " . $time, 1),
             default => throw new \LogicException('Invalid TimeEntry, must be either enter or exit type'),
         };
-
-        $this->printLn($msg, 1);
     }
 
-    /**
-     * @param Collection<int,TimeEntry> $collection
-     */
-    private function printTimeSlot(Collection $collection, string $group)
+    private function printTimeSlot(TimeEntry $e): void
     {
-        $sorted = $collection
-            ->sortBy(fn(TimeEntry $entry) => $entry->start->valueOf(), SORT_ASC);
-
-        $times = $sorted->map(function (TimeEntry $entry) {
-            return $this->getTimeSlotMsg($entry);
-        })->toArray();
-
-
-        foreach ($times as $time) {
-            $this->printLn($time, 1);
-        }
-        $this->printLn("$group (" . Entries::getTotalForHumans($collection) . ")", 2);
+        $duration = $e->getDuration();
+        $time = $this->getTimeSlotMsg($e);
+        $this->printLn("$time ($duration min)", 1);
+        $descriptor = $e->ticket ?? 'other';
+        $explanation = (strtolower(trim($e->description)) === strtolower(trim($e->ticket || ''))) || $e->description === 'UNCATEGORIZED' ? '' : ": $e->description";
+        $this->printLn("{$descriptor}{$explanation}", 2);
     }
 }

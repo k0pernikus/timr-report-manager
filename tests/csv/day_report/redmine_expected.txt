@@ -1,7 +1,9 @@
+
 Date: 2024-10-18
 Total hours tracked:5.25 hours
 💩Non billable hours:2.17 hours (41.33%)
  Billable hours:3.08 hours (58.67%)
 
-󱞩 #Ticket123: 2.68 hours
-󱞩 #Ticket42: 0.4 hours
+󱞩 #ticket123: 2.68 hours
+󱞩 #ticket42: 0.4 hours
+
