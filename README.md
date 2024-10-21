@@ -7,6 +7,7 @@ Tool to reformat timr time tracking to export it to external time tracking tools
 [![unit tests](https://github.com/k0pernikus/timr-report-manager/actions/workflows/php.yml/badge.svg)](https://github.com/k0pernikus/timr-report-manager/actions/workflows/php.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/k0pernikus/timr-report-manager/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/k0pernikus/timr-report-manager/?branch=main)
+[![Code Coverage](https://scrutinizer-ci.com/g/k0pernikus/timr-report-manager/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/k0pernikus/timr-report-manager/?branch=main)
 
 ## Use Case
 Generating reports to easily and quickly forward them to external time tracking tools.
