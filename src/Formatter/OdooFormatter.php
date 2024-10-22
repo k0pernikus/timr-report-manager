@@ -35,10 +35,8 @@ class OdooFormatter extends AbstractFormatter
         $entries->each(function (TimeEntry $e) {
             $diffInMinutes = $e->getDiff($this->previous);
 
-            if ($diffInMinutes > 0) {
-                $this->printLn('| ', 1);
-                $this->printLn('| ' . "$diffInMinutes min break", 1);
-                $this->printLn('| ', 1);
+            if ($diffInMinutes > 1) {
+                $this->printLn("< {$diffInMinutes} min break >", 2);
             }
 
 
@@ -69,11 +67,20 @@ class OdooFormatter extends AbstractFormatter
 
     private function printTimeSlot(TimeEntry $e): void
     {
-        $duration = $e->getDuration();
         $time = $this->getTimeSlotMsg($e);
-        $this->printLn("$time ($duration min)", 1);
-        $descriptor = $e->ticket === null ? 'other' : "$e->ticket";
-        $explanation = (strtolower($e->description) === $e->ticket) ? '' : ": $e->description";
-        $this->printLn("{$descriptor}{$explanation}", 2);
+        $duration = $e->getDuration();
+        $descriptor = $e->ticket ?? '';
+        $explanation = ($e->description === 'UNCATEGORIZED'
+            || strtolower($e->description) === $e->ticket) ? '' : $e->description;
+        $msg = '';
+        if ($descriptor !== '') {
+            $msg = "[$descriptor]";
+        }
+
+        if ($explanation !== '') {
+            $msg .= " $explanation";
+        }
+        $suffix = trim("$msg ($duration min)");
+        $this->printLn("[$time] $suffix", 2);
     }
 }

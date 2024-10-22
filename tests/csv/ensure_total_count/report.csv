@@ -1,0 +1,16 @@
+Id,User,Employee Number,Organization,Type,Notes,Start,End,Manually changed,Start Position,End Position,Duration,Break,Status,Status number
+27443084,Philipp K.,,,Anwesenheitszeit,enter ,22.10.2024 09:40,22.10.2024 09:40,false,ADDRESS,ADDRESS,"0,00",0,Changeable,100
+27443355,Philipp K.,,,Anwesenheitszeit,,22.10.2024 09:45,22.10.2024 09:49,false,"ADDRESS",,"0,07",0,Changeable,100
+27443672,Philipp K.,,,Anwesenheitszeit,time tracking,22.10.2024 09:49,22.10.2024 10:05,false,,ADDRESS,"0,27",0,Changeable,100
+27443869,Philipp K.,,,Anwesenheitszeit,,22.10.2024 10:05,22.10.2024 10:15,false,"ADDRESS","ADDRESS","0,17",0,Changeable,100
+27444757,Philipp K.,,,Anwesenheitszeit,  #ticket stuff,22.10.2024 10:16,22.10.2024 11:06,false,ADDRESS,"ADDRESS","0,83",0,Changeable,100
+27447112,Philipp K.,,,Anwesenheitszeit,work on #ticket ,22.10.2024 11:06,22.10.2024 12:20,false,"ADDRESS",ADDRESS,"1,23",0,Changeable,100
+27448183,Philipp K.,,,Anwesenheitszeit,#ticket work ,22.10.2024 12:20,22.10.2024 12:52,false,"ADDRESS","ADDRESS","0,53",0,Changeable,100
+27449070,Philipp K.,,,Anwesenheitszeit,description,22.10.2024 12:52,22.10.2024 13:10,true,"ADDRESS","ADDRESS","0,30",0,Changeable,100
+27449529,Philipp K.,,,Anwesenheitszeit,exit ,22.10.2024 13:20,22.10.2024 13:20,true,,,"0,00",0,Changeable,100
+27449799,Philipp K.,,,Anwesenheitszeit,enter ,22.10.2024 13:40,22.10.2024 13:40,true,,,"0,00",0,Changeable,100
+27450370,Philipp K.,,,Anwesenheitszeit,Redmine Ticket Pflege ,22.10.2024 13:55,22.10.2024 14:06,true,,,"0,18",0,Changeable,100
+27452312,Philipp K.,,,Anwesenheitszeit,some #checkbox Review,22.10.2024 14:06,22.10.2024 15:03,true,"ADDRESS",ADDRESS,"0,95",0,Changeable,100
+27452955,Philipp K.,,,Anwesenheitszeit,some other ,22.10.2024 15:03,22.10.2024 15:05,true,ADDRESS,ADDRESS,"0,03",0,Changeable,100
+27453045,Philipp K.,,,Anwesenheitszeit,,22.10.2024 15:17,22.10.2024 15:20,false,"ADDRESS","ADDRESS","0,05",0,Changeable,100
+27454061,Philipp K.,,,Anwesenheitszeit,exit ,22.10.2024 15:42,22.10.2024 15:42,true,,,"0,00",0,Changeable,100
