@@ -61,32 +61,12 @@ php timr.php
 
 ```
 $> php timr.php format:odoo --csv path_to.csv
-DATE: 2024-10-18
-DAY TOTAL: 5:15 hours
-
-    09:44 - 10:06
-        #Ticket123 (0:22)
-    10:12 - 10:21
-        PC Adminstration (0:09)
-    10:22 - 11:30
-        Call mit Heino (1:08)
-    11:30 - 11:54
-        #Ticket42 (0:24)
-    12:10 - 14:29
-        doing something related to #Ticket123 and it should be billable (2:19)
-    14:29 - 15:22
-        Meeting Max Mustermann (0:53)
+ODOO_EXAMPLE+
 ```
 
 ```
 $> php timr.php format:redmine --csv path_to.csv
-Date: 2024-10-18
-Total hours tracked:5.25 hours
-💩Non billable hours:2.17 hours (41.33%)
- Billable hours:3.08 hours (58.67%)
-
-󱞩 #Ticket123: 2.68 hours
-󱞩 #Ticket42: 0.4 hours
+REDMINE_EXAMPLE
 ```
 
 The overview is also there to get a quick understanding of hours worked vs hours required.
