@@ -2,13 +2,8 @@ DATE: 2024-10-20
 DAY TOTAL: 5:00 hours
 
     ENTERED office at: 12:48
-    | 
-    | 12 min break
-    | 
-    13:00 - 18:00 (300 min)
-        other: example working time
-    | 
-    | 9 min break
-    | 
+        < 12 min break >
+        [13:00 - 18:00] example working time (300 min)
+        < 9 min break >
     EXITED office at: 18:09
 

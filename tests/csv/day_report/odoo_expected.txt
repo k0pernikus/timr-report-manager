@@ -1,25 +1,12 @@
 DATE: 2024-10-18
 DAY TOTAL: 5:15 hours
 
-    09:44 - 10:06 (22 min)
-        #ticket123
-    | 
-    | 6 min break
-    | 
-    10:12 - 10:21 (9 min)
-        other: PC Adminstration
-    | 
-    | 1 min break
-    | 
-    10:22 - 11:30 (68 min)
-        other: Call mit Heino
-    11:30 - 11:54 (24 min)
-        #ticket42
-    | 
-    | 16 min break
-    | 
-    12:10 - 14:29 (139 min)
-        #ticket123: doing something related to #Ticket123 and it should be billable
-    14:29 - 15:22 (53 min)
-        other: Meeting Max Mustermann
+        [09:44 - 10:06] [#ticket123] (22 min)
+        < 6 min break >
+        [10:12 - 10:21] PC Adminstration (9 min)
+        [10:22 - 11:30] Call mit Heino (68 min)
+        [11:30 - 11:54] [#ticket42] (24 min)
+        < 16 min break >
+        [12:10 - 14:29] [#ticket123] doing something related to #Ticket123 and it should be billable (139 min)
+        [14:29 - 15:22] Meeting Max Mustermann (53 min)
 
