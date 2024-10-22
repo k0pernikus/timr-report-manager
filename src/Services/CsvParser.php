@@ -18,7 +18,10 @@ class CsvParser
      */
     public function parse(string $csvFile): Collection
     {
-        $fullPath = $this->rootDir . DIRECTORY_SEPARATOR . $csvFile;
+        $fullPath = $csvFile;
+        if (!str_starts_with($csvFile, '/')) {
+            $fullPath = $this->rootDir . DIRECTORY_SEPARATOR . $csvFile;
+        }
 
         $records = $this->getRecords($fullPath);
         $entries = $this->toDto($records);
