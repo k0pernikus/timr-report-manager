@@ -13,10 +13,7 @@ class Entries
      */
     public static function getTotalForHumans(Collection $collection): string
     {
-
-        $total = static::getTotal($collection);
-
-        return $total->format('%h:%I');
+        return (static::getTotal($collection))->format('%h:%I');
     }
 
     /**
