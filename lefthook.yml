@@ -1,0 +1,13 @@
+pre-push:
+    commands:
+        tests:
+            run: ./vendor/bin/phpunit --fail-on-deprecation tests/
+
+pre-commit:
+    parallel: true
+    commands:
+        phpcs:
+            tags: style fixer
+            glob: "*.php"
+            stage_fixed: true
+            run: ./vendor/bin/phpcs --standard=PSR12 {staged_files}
