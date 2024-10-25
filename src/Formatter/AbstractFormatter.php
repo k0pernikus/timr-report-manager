@@ -26,8 +26,7 @@ abstract class AbstractFormatter
         int $indentationLevel = 0,
         $char = ' ',
         int $amountCharsPerLevel = 4,
-    )
-    {
+    ) {
         if ($indentationLevel <= 0) {
             $this->output->writeln($msg);
             return;
