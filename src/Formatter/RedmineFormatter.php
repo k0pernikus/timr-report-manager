@@ -10,7 +10,7 @@ class RedmineFormatter extends AbstractFormatter
 {
     public function format(Collection $entries, string $day): void
     {
-        $this->printLn();
+        $this->printLine();
         [$nonBillable, $billable] = $entries->partition(fn(TimeEntry $e) => $e->ticket === null);
 
         /**
@@ -30,15 +30,15 @@ class RedmineFormatter extends AbstractFormatter
         $billablePercentage = round($result['billable'] / $result['total'] * 100, 2);
         $nonBillablePercentage = round(100 - $billablePercentage, 2);
 
-        $this->printLn("Date: <info>$day</info>");
-        $this->printLn("Total hours tracked:<info>{$result['total']}</info> hours");
-        $this->printLn("\u{1F4A9}Non billable hours:<info>{$result['nonBillable']}</info> hours ($nonBillablePercentage%)");
-        $this->printLn("\u{efc7} Billable hours:<info>{$result['billable']}</info> hours ($billablePercentage%)");
-        $this->printLn('');
+        $this->printLine("Date: <info>$day</info>");
+        $this->printLine("Total hours tracked:<info>{$result['total']}</info> hours");
+        $this->printLine("\u{1F4A9}Non billable hours:<info>{$result['nonBillable']}</info> hours ($nonBillablePercentage%)");
+        $this->printLine("\u{efc7} Billable hours:<info>{$result['billable']}</info> hours ($billablePercentage%)");
+        $this->printLine('');
         $billable
             ->groupBy(fn(TimeEntry $item) => $item->ticket)
-            ->each(fn(Collection $c, string $ticket) => $this->printLn("\u{F17A9} " . $ticket . ": <comment>" . Entries::getTotalHours($c) . '</comment> hours', 0));
+            ->each(fn(Collection $c, string $ticket) => $this->printLine("\u{F17A9} " . $ticket . ": <comment>" . Entries::getTotalHours($c) . '</comment> hours', 0));
 
-        $this->printLn('');
+        $this->printLine('');
     }
 }

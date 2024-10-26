@@ -19,7 +19,7 @@ class Timr
     public function __construct(string $rootDir)
     {
         $parser = new CsvParser($rootDir);
-        $cmds = $this->createCmds($parser);
+        $cmds = $this->createCommands($parser);
         $app = $this->createApp($cmds);
 
         $this->app = $app;
@@ -28,7 +28,7 @@ class Timr
     /**
      * @return Command[]
      */
-    private function createCmds(CsvParser $parser): array
+    private function createCommands(CsvParser $parser): array
     {
         return [
             new TimrReportCommand('format:redmine', 'redmine', $parser, new RedmineFormatter()),
@@ -38,13 +38,13 @@ class Timr
     }
 
     /**
-     * @param Command[] $cmds
+     * @param Command[] $commands
      */
-    private function createApp(array $cmds): Application
+    private function createApp(array $commands): Application
     {
         $app = new Application('timr', '1.0.0');
         $app->setAutoExit(false);
-        foreach ($cmds as $cmd) {
+        foreach ($commands as $cmd) {
             $app->add($cmd);
         }
 

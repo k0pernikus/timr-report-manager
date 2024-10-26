@@ -61,7 +61,7 @@ php timr.php
 
 ```
 $> php timr.php format:odoo --csv path_to.csv
-ODOO_EXAMPLE+
+ODOO_EXAMPLE
 ```
 
 ```
@@ -97,7 +97,7 @@ php .\timr.php overview -c .\tests\csv\monthly.csv
 - [ ] support different languages
 - [ ] distinguish / filter out user
 - [ ] be able to use both "Type" as "Notes" as notes as task descriptor, at best via flag
-  - free tier only allows two types anyway, maybe WONTFIX
+    - free tier only allows two types anyway, maybe WONTFIX
 
 ## DX Experience
 

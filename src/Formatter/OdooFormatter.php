@@ -25,18 +25,18 @@ class OdooFormatter extends AbstractFormatter
     {
         $this->previous = null;
 
-        $this->printLn('DATE: <comment>' . $day . '</comment>', 0);
+        $this->printLine('DATE: <comment>' . $day . '</comment>', 0);
 
         $total = Entries::getTotalForHumans($entries);
 
-        $this->printLn("DAY TOTAL: <info>$total</info> hours", 0);
-        $this->printLn();
+        $this->printLine("DAY TOTAL: <info>$total</info> hours", 0);
+        $this->printLine();
 
         $entries->each(function (TimeEntry $e) {
             $diffInMinutes = $e->getDiff($this->previous);
 
             if ($diffInMinutes > 1) {
-                $this->printLn("< {$diffInMinutes} min break >", 2);
+                $this->printLine("< {$diffInMinutes} min break >", 2);
             }
 
             match (trim($e->description)) {
@@ -47,7 +47,7 @@ class OdooFormatter extends AbstractFormatter
             $this->previous = $e;
         });
 
-        $this->printLn("");
+        $this->printLine("");
     }
 
     private function printEnteringAndExiting(TimeEntry $e): void
@@ -55,8 +55,8 @@ class OdooFormatter extends AbstractFormatter
         $time = $e->start->format('H:i');
 
         match ($e->description) {
-            'enter' => $this->printLn('ENTERED office at: ' . $time, 1),
-            'exit' => $this->printLn("EXITED office at: " . $time, 1),
+            'enter' => $this->printLine('ENTERED office at: ' . $time, 1),
+            'exit' => $this->printLine("EXITED office at: " . $time, 1),
             default => throw new \LogicException('Invalid TimeEntry, must be either enter or exit type'),
         };
     }
@@ -77,6 +77,6 @@ class OdooFormatter extends AbstractFormatter
             $msg .= " $explanation";
         }
         $suffix = trim("$msg ($duration min)");
-        $this->printLn("[$time] $suffix", 2);
+        $this->printLine("[$time] $suffix", 2);
     }
 }

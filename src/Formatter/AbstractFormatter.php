@@ -18,17 +18,19 @@ abstract class AbstractFormatter
     public function setOutput(OutputInterface $output): AbstractFormatter
     {
         $this->output = $output;
+
         return $this;
     }
 
-    protected function printLn(
+    protected function printLine(
         string $msg = '',
         int $indentationLevel = 0,
         $char = ' ',
         int $amountCharsPerLevel = 4,
-    ) {
+    ): void {
         if ($indentationLevel <= 0) {
             $this->output->writeln($msg);
+
             return;
         }
 
