@@ -39,7 +39,6 @@ class OdooFormatter extends AbstractFormatter
                 $this->printLn("< {$diffInMinutes} min break >", 2);
             }
 
-
             match (trim($e->description)) {
                 'enter', 'exit' => $this->printEnteringAndExiting($e),
                 default => $this->printTimeSlot($e),
@@ -51,9 +50,6 @@ class OdooFormatter extends AbstractFormatter
         $this->printLn("");
     }
 
-    /**
-     * @param Collection<int,TimeEntry> $c
-     */
     private function printEnteringAndExiting(TimeEntry $e): void
     {
         $time = $e->start->format('H:i');

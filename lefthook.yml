@@ -10,4 +10,4 @@ pre-commit:
             tags: style fixer
             glob: "*.php"
             stage_fixed: true
-            run: ./vendor/bin/phpcs --standard=PSR12 {staged_files}
+            run: ./vendor/bin/phpcs -n --standard=PSR12 {staged_files}

@@ -37,7 +37,6 @@ class CsvParserTest extends TestCase
         $actualStat2 = $second->start->toAtomString();
         $actualEnd2 = $second->end->toAtomString();
 
-
         $this::assertSame(
             expected: $expectedStart1,
             actual: $actualStat1,

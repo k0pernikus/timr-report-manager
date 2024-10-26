@@ -9,8 +9,13 @@ use League\Csv\Reader;
 
 class CsvParser
 {
-    public function __construct(private readonly string $rootDir)
-    {
+    private readonly EntriesMerger $merger;
+
+    public function __construct(
+        private readonly string $rootDir,
+        EntriesMerger $merger = null,
+    ) {
+        $this->merger = $merger ?? new EntriesMerger();
     }
 
     /**
@@ -29,38 +34,7 @@ class CsvParser
         return collect($entries)
             ->sortBy(fn(TimeEntry $entry) => $entry->start)
             ->groupBy(fn(TimeEntry $entry) => $entry->description)
-            ->map(function (Collection $groupedEntries): Collection {
-                /** @var Collection<int, TimeEntry> $mergedEntries */
-                $mergedEntries = collect();
-                $currentMergedEntry = $groupedEntries->first();
-
-                foreach ($groupedEntries as $entry) {
-                    if (!$currentMergedEntry) {
-                        $currentMergedEntry = $entry;
-
-                        continue;
-                    }
-
-                    if ($entry->start->lessThanOrEqualTo($currentMergedEntry->end)) {
-                        $currentMergedEntry = new TimeEntry(
-                            description: $currentMergedEntry->description,
-                            start: $currentMergedEntry->start,
-                            end: $entry->end->isAfter($currentMergedEntry->end) ? $entry->end : $currentMergedEntry->end
-                        );
-
-                        continue;
-                    }
-
-                    $mergedEntries->push($currentMergedEntry);
-                    $currentMergedEntry = $entry;
-                }
-
-                if ($currentMergedEntry) {
-                    $mergedEntries->push($currentMergedEntry);
-                }
-
-                return $mergedEntries;
-            })
+            ->map(fn($groupedEntries) => $this->merger->mergeEntries($groupedEntries))
             ->flatten();
     }
 

@@ -27,7 +27,6 @@ class RedmineFormatter extends AbstractFormatter
         ])->mapWithKeys(fn(Collection $c, $key) => [$key => Entries::getTotalHours($c)])
             ->toArray();
 
-
         $billablePercentage = round($result['billable'] / $result['total'] * 100, 2);
         $nonBillablePercentage = round(100 - $billablePercentage, 2);
 
