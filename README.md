@@ -71,7 +71,7 @@ DAY TOTAL: 5:15 hours
         [11:30 - 11:54] [#ticket42] (24 min)
         < 16 min break >
         [12:10 - 14:29] [#ticket123] doing something related to #Ticket123 and it should be billable (139 min)
-        [14:29 - 15:22] Meeting Max Mustermann (53 min)+
+        [14:29 - 15:22] Meeting Max Mustermann (53 min)
 ```
 
 ```
@@ -114,7 +114,7 @@ php .\timr.php overview -c .\tests\csv\monthly.csv
 - [ ] support different languages
 - [ ] distinguish / filter out user
 - [ ] be able to use both "Type" as "Notes" as notes as task descriptor, at best via flag
-  - free tier only allows two types anyway, maybe WONTFIX
+    - free tier only allows two types anyway, maybe WONTFIX
 
 ## DX Experience
 
