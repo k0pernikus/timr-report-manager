@@ -25,7 +25,8 @@
     "require": {
         "league/csv": "^9.18.0",
         "nesbot/carbon": "^3.8",
-        "illuminate/collections": "^11.28"
+        "illuminate/collections": "^11.28",
+        "ext-iconv": "*"
     },
     "scripts": {
         "tests": "./vendor/bin/phpunit --fail-on-deprecation tests/",
