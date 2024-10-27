@@ -7,7 +7,7 @@ use Symfony\Component\Console\Output\BufferedOutput;
 
 class TimrOverviewCommandTest extends TimeCmdTestCase
 {
-    public function testTimrOverviewCommand()
+    public function testTimrOverviewCommand(): void
     {
         $input = $this->createArgvCsvInput('overview', 'tests/csv/day_report/day_report.csv', period: 'day');
         $buffered = new BufferedOutput();

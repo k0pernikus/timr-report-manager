@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 class EntriesTest extends TestCase
 {
-    public function testItParesTheWorkloadOfADay()
+    public function testItParesTheWorkloadOfADay(): void
     {
         $rootDir = __DIR__ . '/../..';
         $parser = new CsvParser($rootDir);

@@ -58,8 +58,12 @@ class TimrOverviewCommand extends Command
             ->parse($csvFile)
             ->sortBy(fn(TimeEntry $entry) => $entry->start, SORT_DESC)
             ->groupBy(fn(TimeEntry $entry) => $entry->start->format('Y-m'))
-            ->map(function (Collection $items, string $group) use ($period, $targetHoursPerDay, $output) {
-                $latest = $items->last()->end;
+            ->map(callback: function (Collection $items, string $group) use ($period, $targetHoursPerDay, $output) {
+                if ($items->last() === null) {
+                    throw new \RuntimeException('Invalid collection');
+                }
+
+
 
 
                 $excludeDates = [
@@ -68,8 +72,9 @@ class TimrOverviewCommand extends Command
                 ];
 
                 [$year, $month] = explode("-", $group);
-                $start = Carbon::create($year, $month, 1);
+                $start = Carbon::create((int)$year, (int)$month, 1);
 
+                $latest = $items->last()->end;
                 $end = $this->now->isSameMonth($latest) ? $this->now : $latest->end;
 
 
@@ -85,7 +90,6 @@ class TimrOverviewCommand extends Command
                         )
                         ->count(),
                 };
-
 
                 $targetHours = $amountDays * $targetHoursPerDay;
 

@@ -34,7 +34,7 @@ class CsvParser
         return collect($entries)
             ->sortBy(fn(TimeEntry $entry) => $entry->start)
             ->groupBy(fn(TimeEntry $entry) => $entry->description)
-            ->map(fn($groupedEntries) => $this->merger->mergeEntries($groupedEntries))
+            ->map(fn(Collection $groupedEntries) => $this->merger->mergeEntries($groupedEntries))
             ->flatten();
     }
 

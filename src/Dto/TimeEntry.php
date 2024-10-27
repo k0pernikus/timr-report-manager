@@ -26,7 +26,7 @@ class TimeEntry
         $this->end = Carbon::parse($end)->toImmutable();
     }
 
-    private function getTicket($description): ?string
+    private function getTicket(string $description): ?string
     {
         if (preg_match("/#(\w+)/", $description, $matches)) {
             return trim('#' . strtolower($matches[1]));
@@ -49,6 +49,6 @@ class TimeEntry
             return 0;
         }
 
-        return $previous->end->diffInMinutes($this->start);
+        return (int)$previous->end->diffInMinutes($this->start);
     }
 }

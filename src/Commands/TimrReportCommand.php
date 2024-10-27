@@ -38,7 +38,7 @@ class TimrReportCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $csvFile = trim($input->getOption(static::CSV));
+        $csvFile = trim((string)$input->getOption(static::CSV));
 
         $this
             ->parser

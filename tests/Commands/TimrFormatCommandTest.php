@@ -15,21 +15,21 @@ class TimrFormatCommandTest extends TimeCmdTestCase
 
         yield [
             'format:oddoo',
-            trim(file_get_contents(
+            file_get_contents(
                 $path . 'odoo_expected.txt'
-            )),
+            ),
         ];
 
         yield [
             'format:redmine',
-            trim(file_get_contents(
+            file_get_contents(
                 $path . 'redmine_expected.txt'
-            )),
+            ),
         ];
     }
 
     #[DataProvider('dataProvider')]
-    public function testTimrOverviewCommand(string $cmdName, string $expectedResult)
+    public function testTimrOverviewCommand(string $cmdName, string $expectedResult): void
     {
         $input = $this->createArgvCsvInput($cmdName, 'tests/csv/day_report/day_report.csv');
         $buffered = new BufferedOutput();
@@ -37,13 +37,13 @@ class TimrFormatCommandTest extends TimeCmdTestCase
 
         $actual = trim($buffered->fetch());
         $this::assertSame(
-            expected: $expectedResult,
+            expected: trim($expectedResult),
             actual: $actual,
             message: $cmdName,
         );
     }
 
-    public function testItShowOfficeEntryAndExit()
+    public function testItShowOfficeEntryAndExit(): void
     {
         $input = $this->createArgvCsvInput('format:oddoo', 'tests/csv/enter_and_exit/enter_and_exit.csv');
         $buffered = new BufferedOutput();
@@ -59,7 +59,7 @@ class TimrFormatCommandTest extends TimeCmdTestCase
         );
     }
 
-    public function testItIgnoresCaseForTicket()
+    public function testItIgnoresCaseForTicket(): void
     {
         $input = $this->createArgvCsvInput('format:redmine', 'tests/csv/tags/tickets_containing_upper_and_lower_case.csv');
 

@@ -25,7 +25,7 @@ abstract class AbstractFormatter
     protected function printLine(
         string $msg = '',
         int $indentationLevel = 0,
-        $char = ' ',
+        string $char = ' ',
         int $amountCharsPerLevel = 4,
     ): void {
         if ($indentationLevel <= 0) {

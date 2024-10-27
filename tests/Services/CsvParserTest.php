@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class CsvParserTest extends TestCase
 {
-    public function testItMergesActivities()
+    public function testItMergesActivities(): void
     {
         $rootDir = __DIR__ . '/../..';
         $parser = new CsvParser($rootDir);

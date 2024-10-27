@@ -8,41 +8,43 @@ use Kopernikus\TimrReportManager\Dto\TimeEntry;
 class EntriesMerger
 {
     /**
-     * @param Collection<string, Collection<int, TimeEntry>> $groupedEntries
+     * @param Collection<int, TimeEntry> $entries
      *
-     * @return Collection
+     * @return Collection<int,TimeEntry>
      */
-    public function mergeEntries(Collection $groupedEntries): Collection
+    public function mergeEntries(Collection $entries): Collection
     {
-        /** @var Collection<int, TimeEntry> $mergedEntries */
-        $mergedEntries = collect();
-        $currentMergedEntry = $groupedEntries->first();
+        $current = $entries->first();
+        if (!$current instanceof TimeEntry) {
+            throw new \LogicException('invalid object');
+        }
 
-        foreach ($groupedEntries as $entry) {
-            if (!$currentMergedEntry) {
-                $currentMergedEntry = $entry;
+        /** @var Collection<int, TimeEntry> $resultStream */
+        $resultStream = collect();
+        foreach ($entries as $entry) {
+            if ($entry->start->lessThanOrEqualTo($current->end)) {
+                $current = $this->mergeIntoOne($current, $entry);
 
                 continue;
             }
 
-            if ($entry->start->lessThanOrEqualTo($currentMergedEntry->end)) {
-                $currentMergedEntry = new TimeEntry(
-                    description: $currentMergedEntry->description,
-                    start: $currentMergedEntry->start,
-                    end: $entry->end->isAfter($currentMergedEntry->end) ? $entry->end : $currentMergedEntry->end
-                );
-
-                continue;
-            }
-
-            $mergedEntries->push($currentMergedEntry);
-            $currentMergedEntry = $entry;
+            $resultStream->push($current);
+            $current = $entry;
         }
 
-        if ($currentMergedEntry) {
-            $mergedEntries->push($currentMergedEntry);
+        if ($current) {
+            $resultStream->push($current);
         }
 
-        return $mergedEntries;
+        return $resultStream;
+    }
+
+    private function mergeIntoOne(TimeEntry $currentMergedEntry, TimeEntry $entry): TimeEntry
+    {
+        return new TimeEntry(
+            description: $currentMergedEntry->description,
+            start: $currentMergedEntry->start,
+            end: $entry->end->isAfter($currentMergedEntry->end) ? $entry->end : $currentMergedEntry->end
+        );
     }
 }
