@@ -61,7 +61,7 @@ php timr.php
 
 ```
 $> php timr.php format:odoo --csv path_to.csv
-DATE: 2024-10-18
+DATE: Fri, 2024-10-18
 DAY TOTAL: 5:15 hours
 
         [09:44 - 10:06] [#ticket123] (22 min)
@@ -77,7 +77,7 @@ DAY TOTAL: 5:15 hours
 ```
 $> php timr.php format:redmine --csv path_to.csv
 
-Date: 2024-10-18
+Date: Fri, 2024-10-18
 Total hours tracked:5.25 hours
 💩Non billable hours:2.17 hours (41.33%)
  Billable hours:3.08 hours (58.67%)
