@@ -44,7 +44,7 @@ class TimrReportCommand extends Command
             ->parser
             ->parse($csvFile)
             ->sortBy(fn(TimeEntry $entry) => $entry->start, SORT_DESC)
-            ->groupBy(fn(TimeEntry $entry) => $entry->start->format('Y-m-d'))
+            ->groupBy(fn(TimeEntry $entry) => $entry->start->format('D, Y-m-d'))
             ->each(
                 function ($collection, $day) use ($output) {
                     $this->printDailyReport($collection, $output, $day);
