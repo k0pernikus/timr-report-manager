@@ -55,7 +55,7 @@ class CsvParser
             $note = iconv('iso-8859-1', 'UTF8', $note);
 
             if ($note === false) {
-                new \RuntimeException('could not decode notes from csv file');
+                throw new \RuntimeException('could not decode notes from csv file');
             }
 
             yield new TimeEntry($note, $start, $end);
