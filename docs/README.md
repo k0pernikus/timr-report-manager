@@ -1,20 +1,18 @@
 # timr-report-manager
 
-Tool to reformat timr time tracking to export it to external time tracking tools
-
-## Seals of Approvals
-
 [![unit tests](https://github.com/k0pernikus/timr-report-manager/actions/workflows/php.yml/badge.svg)](https://github.com/k0pernikus/timr-report-manager/actions/workflows/php.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/k0pernikus/timr-report-manager/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/k0pernikus/timr-report-manager/?branch=main)
 [![Code Coverage](https://scrutinizer-ci.com/g/k0pernikus/timr-report-manager/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/k0pernikus/timr-report-manager/?branch=main)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+Tool to reformat timr time tracking to export it to external time tracking tools
 
 ## Use Case
 
 Generating reports to easily and quickly forward them to external time tracking tools.
 
-Timr in its free version has the limitation to only track one activity. One can use the Notes annotation field as a "
-task descriptor".
+Timr in its free version has the limitation to only track one activity. One can use the Notes annotation field as a "task descriptor" via `#`.
 
 I have the use case to track my time both for:
 
@@ -23,8 +21,6 @@ I have the use case to track my time both for:
 - it shows the hours both in the hour:minute (e.g. `5:15`), and as hours (e.g. `5.25`) for working with different time
   tracking tools at the same time
 
-Furthermore, this reports groups the activity by the notes.
-
 # Conventions
 
 ## Keywords in Notes
@@ -32,7 +28,6 @@ Furthermore, this reports groups the activity by the notes.
 ### Location
 
 - `enter`: means entry of office location, won't be considered working time
-    - an entry having same start and same entry will also be considered as an entry/exit point
 - `exit`: time marker when one has left the office
 
 ### Ticket
@@ -76,37 +71,37 @@ php .\timr.php overview -c .\tests\csv\monthly.csv
 2024-10: Expected 60 / Delivered 63.9
 ```
 
-# ToDos:
+# ToDos
 
-## Must Haves:
+## Must Haves
 
 - [x] in the ticket report, only show activities having a ticket id number included
 - [x] support keywords, `exit`, `enter`, ...
-    - [ ] `enter`, `exit` can happen multiple times a day
-- [ ] ... and tags `#{any_tag_starting_with_hashtag}`
-- [ ] tags should be discovered even if only part of the text (yet only one tag may be part of the note)
+- [x] ... and tags `#{any_tag_starting_with_hashtag}`
+- [x] tags should be discovered even if only part of the text
+- [ ] yet only one tag may be part of the note
 - [x] automatically summarize activities having the same end and start date when having the same note
-- [ ] should show expectations on a week and monthly basis
-- [ ] support different languages
+- [x] redmine formatter should round up to the next quarter
 
-## Nice to haves:
+## Nice to haves
 
+- [ ] RedmineFormatter round up value should be input flag
 - [ ] vacations, sick days, and holidays instead of hardcoded
-- [ ] also show break times over the course of a day
-- [x] formatting
 - [ ] support different languages
 - [ ] distinguish / filter out user
-- [ ] be able to use both "Type" as "Notes" as notes as task descriptor, at best via flag
-    - free tier only allows two types anyway, maybe WONTFIX
+- [x] also show break times over the course of a day
+- [x] formatting
+- [x] ~~be able to use both "Type" as "Notes" as notes as task descriptor, at best via flag~~
+  - free tier only allows two types anyway, maybe WONTFIX
 
 ## DX Experience
 
-- [ ] Codestyle
+- [ ] Code style
 - [x] phpstan
 - [x] resolve __DIR__ issue when coding on windows using WSL
 - [x] nice badges
-- [x] github action for unit tests
-- [x] scrutinzer
+- [x] GitHub action for unit tests
+- [x] scrutinizer
 - [x] automatically update README.md examples
 - [x] scrutinizer code coverage
 - [x] code coverage
