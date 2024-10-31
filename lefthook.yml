@@ -11,3 +11,8 @@ pre-commit:
             glob: "*.php"
             stage_fixed: true
             run: ./vendor/bin/phpcs -n --standard=PSR12 {staged_files}
+
+post-checkout:
+    commands:
+        readme_readonly:
+            run: chmod -w ./Readme.md
