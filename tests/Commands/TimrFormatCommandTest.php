@@ -50,7 +50,7 @@ class TimrFormatCommandTest extends TimeCmdTestCase
         $this->timr->run($input, $buffered);
 
         $path = __DIR__ . '/../../tests/csv/enter_and_exit/expected_output.txt';
-        $expectedResult = trim(file_get_contents($path));
+        $expectedResult = trim(string: file_get_contents($path));
 
         $actual = trim($buffered->fetch());
         $this::assertSame(
@@ -67,7 +67,7 @@ class TimrFormatCommandTest extends TimeCmdTestCase
         $this->timr->run($input, $buffered);
 
         $path = __DIR__ . '/../../tests/csv/tags/redmine_report_only_with_one_checkbox_tag.txt';
-        $expectedResult = trim(file_get_contents($path));
+        $expectedResult = trim(string: file_get_contents($path));
 
         $actual = trim($buffered->fetch());
         $this::assertSame(

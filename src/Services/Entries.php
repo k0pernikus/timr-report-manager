@@ -29,10 +29,14 @@ class Entries
     /**
      * @param Collection<int, TimeEntry> $collection
      */
-    public static function getTotalHours(Collection $collection): float
+    public static function getTotalHours(Collection $collection, int $roundToNextFactorOf = 1): float
     {
         $total = static::getTotal($collection);
 
-        return round($total->totalHours, 2);
+        if ($roundToNextFactorOf <= 1) {
+            return round($total->totalHours, 2);
+        }
+
+        return ceil($total->totalHours * $roundToNextFactorOf) / $roundToNextFactorOf;
     }
 }
