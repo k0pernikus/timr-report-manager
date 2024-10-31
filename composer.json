@@ -20,7 +20,8 @@
         "phpunit/phpunit": "^11.4",
         "symfony/console": "^7.1",
         "phpstan/phpstan": "^1.12",
-        "squizlabs/php_codesniffer": "*"
+        "squizlabs/php_codesniffer": "*",
+        "roave/security-advisories": "dev-latest"
     },
     "require": {
         "league/csv": "^9.18.0",
