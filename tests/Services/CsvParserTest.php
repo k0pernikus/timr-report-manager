@@ -7,18 +7,23 @@ use PHPUnit\Framework\TestCase;
 
 class CsvParserTest extends TestCase
 {
-    public function testItMergesActivities(): void
+    protected CsvParser $csvParser;
+
+    protected function setUp(): void
     {
         $rootDir = __DIR__ . '/../..';
-        $parser = new CsvParser($rootDir);
+        $this->csvParser = new CsvParser($rootDir);
+    }
 
+    public function testItMergesActivities(): void
+    {
         $fistWorkSlot = new TimeEntry('TICKET #45', '2024-10-16 14:14', end: '2024-10-16 17:12');
         $secondWorksSlot = new TimeEntry('TICKET #45', '2024-10-16 19:30', end: '2024-10-16 22:00');
 
         /**
          * @var TimeEntry[] $result
          */
-        $result = $parser
+        $result = $this->csvParser
             ->parse('tests/csv/day_with_same_end_and_start_time.csv')
             ->toArray();
 
@@ -60,5 +65,12 @@ class CsvParserTest extends TestCase
         );
 
         $this::assertCount(2, $result, 'it should only contain two items');
+    }
+
+    public function testItFailsOnNotesHavingMultipleTicketsIds()
+    {
+        $result = $this->csvParser->parse('tests/csv/note_contains_more_than_one_ticket_id/report.csv');
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage("Note contains multiple ticket ids: #123, #124; only one is allowed. Please sanitize your records");
     }
 }
