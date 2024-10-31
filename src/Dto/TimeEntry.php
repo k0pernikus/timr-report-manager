@@ -16,7 +16,8 @@ class TimeEntry
         string $description,
         string $start,
         string $end
-    ) {
+    )
+    {
         $description = trim($description);
         $this->description = empty($description) ? 'UNCATEGORIZED' : trim($description);
         $this->ticket = $this->getTicket($description);

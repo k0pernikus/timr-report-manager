@@ -10,7 +10,7 @@ pre-commit:
             tags: style fixer
             glob: "*.php"
             stage_fixed: true
-            run: ./vendor/bin/phpcs -n --standard=PSR12 {staged_files}
+            run: ./vendor/bin/phpcs -ns --standard=phpcs.xml --error-severity=1 {staged_files}
 
 post-checkout:
     commands:

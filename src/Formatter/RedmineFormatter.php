@@ -34,7 +34,6 @@ class RedmineFormatter extends AbstractFormatter
         $billablePercentage = round($result['billable'] / $result['total'] * 100, 2);
         $nonBillablePercentage = round(100 - $billablePercentage, 2);
 
-
         $this->printLine("Date: <info>$day</info>");
         $this->printLine("Total hours tracked:<info>{$result['total']}</info> hours");
         $this->printLine("\u{1F4A9}Non billable hours:<info>{$result['nonBillable']}</info> hours ($nonBillablePercentage%)");
@@ -44,7 +43,6 @@ class RedmineFormatter extends AbstractFormatter
         if ($this->roundUpToNearestFactor >= 1) {
             $this->printLine("Rounded up to the nearest value of 1/{$this->roundUpToNearestFactor}");
         }
-
 
         $billable
             ->groupBy(fn(TimeEntry $item) => $item->ticket)

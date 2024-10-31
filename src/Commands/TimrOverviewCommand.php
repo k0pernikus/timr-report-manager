@@ -63,9 +63,6 @@ class TimrOverviewCommand extends Command
                     throw new \RuntimeException('Invalid collection');
                 }
 
-
-
-
                 $excludeDates = [
                     '2024-10-03',
                     '2024-10-04',
@@ -77,14 +74,13 @@ class TimrOverviewCommand extends Command
                 $latest = $items->last()->end;
                 $end = $this->now->isSameMonth($latest) ? $this->now : $latest->end;
 
-
                 $amountDays = match ($period) {
                     'day' => 1,
                     'week' => 7, // also must used exluded dates
                     default => (CarbonPeriod::create($start, $end))
-                        ->filter('isWeekday')
-                        ->filter(
-                            function (Carbon $date) use ($excludeDates) {
+                        ::filter('isWeekday')
+                        ::filter(
+                            static function (Carbon $date) use ($excludeDates): bool {
                                 return !in_array($date->format('Y-m-d'), $excludeDates);
                             }
                         )

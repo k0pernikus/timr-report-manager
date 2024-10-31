@@ -20,7 +20,8 @@ class TimrReportCommand extends Command
         string $description,
         private readonly CsvParser $parser,
         private readonly AbstractFormatter $formatter
-    ) {
+    )
+    {
         parent::__construct($name);
         $this->setDescription($description);
     }

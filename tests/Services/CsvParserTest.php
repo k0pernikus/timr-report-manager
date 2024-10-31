@@ -10,12 +10,6 @@ class CsvParserTest extends TestCase
 {
     protected CsvParser $csvParser;
 
-    protected function setUp(): void
-    {
-        $rootDir = __DIR__ . '/../..';
-        $this->csvParser = new CsvParser($rootDir);
-    }
-
     public function testItMergesActivities(): void
     {
         $fistWorkSlot = new TimeEntry('TICKET #45', '2024-10-16 14:14', end: '2024-10-16 17:12');
@@ -74,5 +68,11 @@ class CsvParserTest extends TestCase
         $this->expectExceptionMessage('Note contains multiple ticket ids: #ticket123, #ticket42; only one is allowed. Please sanitize your records.');
 
         $result = $this->csvParser->parse('tests/csv/note_contains_more_than_one_ticket_id/report.csv');
+    }
+
+    protected function setUp(): void
+    {
+        $rootDir = __DIR__ . '/../..';
+        $this->csvParser = new CsvParser($rootDir);
     }
 }

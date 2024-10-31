@@ -14,7 +14,8 @@ class CsvParser
     public function __construct(
         private readonly string $rootDir,
         EntriesMerger $merger = null,
-    ) {
+    )
+    {
         $this->merger = $merger ?? new EntriesMerger();
     }
 
