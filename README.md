@@ -97,13 +97,13 @@ php .\timr.php overview -c .\tests\csv\monthly.csv
 - [x] support keywords, `exit`, `enter`, ...
 - [x] ... and tags `#{any_tag_starting_with_hashtag}`
 - [x] tags should be discovered even if only part of the text
-- [ ] yet only one tag may be part of the note
+- [x] yet only one tag may be part of the note
 - [x] automatically summarize activities having the same end and start date when having the same note
 - [x] redmine formatter should round up to the next quarter
 
 ## Nice to haves
 
-- [ ] RedmineFormatter round up value should be input flag
+- [x] RedmineFormatter round up value should be input flag
 - [ ] vacations, sick days, and holidays instead of hardcoded
 - [ ] support different languages
 - [ ] distinguish / filter out user
@@ -114,7 +114,7 @@ php .\timr.php overview -c .\tests\csv\monthly.csv
 
 ## DX Experience
 
-- [ ] Code style
+- [x] Code style, slightly changed PSR12 style
 - [x] phpstan
 - [x] resolve __DIR__ issue when coding on windows using WSL
 - [x] nice badges
