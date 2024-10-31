@@ -2,6 +2,8 @@ pre-push:
     commands:
         tests:
             run: ./vendor/bin/phpunit --fail-on-deprecation tests/
+        readme_readonly:
+            run: chmod -w ./Readme.md
 
 pre-commit:
     parallel: true
@@ -11,6 +13,11 @@ pre-commit:
             glob: "*.php"
             stage_fixed: true
             run: ./vendor/bin/phpcs -ns --standard=phpcs.xml --error-severity=1 {staged_files}
+
+        check_readme: # Correct indentation here
+            glob: "Readme.md"
+            run: git diff --cached --name-only | grep -q 'Readme.md' || echo "Changes to Readme.md detected, change docs/Readme.md instead" && exit 1
+            error: there is an error
 
 post-checkout:
     commands:
