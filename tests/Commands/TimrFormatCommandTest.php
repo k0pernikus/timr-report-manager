@@ -13,14 +13,14 @@ class TimrFormatCommandTest extends TimeCmdTestCase
     {
         $path = __DIR__ . '/../csv/day_report/';
 
-        yield [
+        yield 'odoo' => [
             'format:oddoo',
             file_get_contents(
                 $path . 'odoo_expected.txt'
             ),
         ];
 
-        yield [
+        yield 'redmine' => [
             'format:redmine',
             file_get_contents(
                 $path . 'redmine_expected.txt'
