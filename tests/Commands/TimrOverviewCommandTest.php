@@ -9,9 +9,11 @@ class TimrOverviewCommandTest extends TimeCmdTestCase
 {
     public function testTimrOverviewCommand(): void
     {
-        $this->markTestSkipped('IMPLEMENT ME');
+        $this->markTestSkipped('implement me');
+
         $input = $this->createArgvCsvInput('overview', 'tests/csv/day_report/day_report.csv', period: 'day');
         $buffered = new BufferedOutput();
+
         $exitCode = $this->timr->run($input, $buffered);
         $actual = $buffered->fetch();
 

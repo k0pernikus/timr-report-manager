@@ -7,3 +7,4 @@ Total hours tracked:5.25 hours
 Rounded up to the nearest value of 1/4
 󱞩 #ticket123: 2.75 h
 󱞩 #ticket42: 0.5 h
+
