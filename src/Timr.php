@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Kopernikus\TimrReportManager;
 
 use Kopernikus\TimrReportManager\Commands\TimrOverviewCommand;

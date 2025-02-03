@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Kopernikus\TimrReportManager\Services;
 
 use Illuminate\Support\Collection;
@@ -43,8 +45,8 @@ class EntriesMerger
     {
         return new TimeEntry(
             description: $currentMergedEntry->description,
-            start: $currentMergedEntry->start,
-            end: $entry->end->isAfter($currentMergedEntry->end) ? $entry->end : $currentMergedEntry->end
+            start: $currentMergedEntry->start->toString(),
+            end: $entry->end->isAfter($currentMergedEntry->end) ? $entry->end->toString() : $currentMergedEntry->end->toString()
         );
     }
 }

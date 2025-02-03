@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Kopernikus\TimrReportManager\Dto;
 
 use Carbon\Carbon;

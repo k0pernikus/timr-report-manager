@@ -12,7 +12,8 @@ Tool to reformat timr time tracking to export it to external time tracking tools
 
 Generating reports to easily and quickly forward them to external time tracking tools.
 
-Timr in its free version has the limitation to only track one activity. One can use the Notes annotation field as a "task descriptor" via `#`.
+Timr in its free version has the limitation to only track one activity. One can use the Notes annotation field as a "
+task descriptor" via `#`.
 
 I have the use case to track my time both for:
 
@@ -75,6 +76,14 @@ php .\timr.php overview -c .\tests\csv\monthly.csv
 
 ## Must Haves
 
+### Extended Features
+
+- [ ] sync with external services,
+    - [ ] e.g. redmine
+    - [ ] odoo
+
+### Basic Features
+
 - [x] in the ticket report, only show activities having a ticket id number included
 - [x] support keywords, `exit`, `enter`, ...
 - [x] ... and tags `#{any_tag_starting_with_hashtag}`
@@ -85,14 +94,12 @@ php .\timr.php overview -c .\tests\csv\monthly.csv
 
 ## Nice to haves
 
-- [x] RedmineFormatter round up value should be input flag
-- [ ] vacations, sick days, and holidays instead of hardcoded
 - [ ] support different languages
+- [ ] vacations, sick days, and holidays instead of hardcoded
 - [ ] distinguish / filter out user
+- [x] RedmineFormatter round up value should be input flag
 - [x] also show break times over the course of a day
 - [x] formatting
-- [x] ~~be able to use both "Type" as "Notes" as notes as task descriptor, at best via flag~~
-  - free tier only allows two types anyway, maybe WONTFIX
 
 ## DX Experience
 

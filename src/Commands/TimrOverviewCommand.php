@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Kopernikus\TimrReportManager\Commands;
 
 use Carbon\Carbon;
@@ -9,6 +11,7 @@ use Carbon\CarbonPeriod;
 use Illuminate\Support\Collection;
 use Kopernikus\TimrReportManager\Dto\TimeEntry;
 use Kopernikus\TimrReportManager\Services\CsvParser;
+use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -60,7 +63,7 @@ class TimrOverviewCommand extends Command
             ->groupBy(fn(TimeEntry $entry) => $entry->start->format('Y-m'))
             ->map(callback: function (Collection $items, string $group) use ($period, $targetHoursPerDay, $output) {
                 if ($items->last() === null) {
-                    throw new \RuntimeException('Invalid collection');
+                    throw new RuntimeException('Invalid collection');
                 }
 
                 $excludeDates = [

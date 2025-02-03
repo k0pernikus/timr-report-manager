@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Kopernikus\TimrReportManager\Assertions;
 
 use Kopernikus\TimrReportManager\Dto\TimeEntry;
